@@ -37,21 +37,16 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+   
     
     # Third-party apps
     'rest_framework',
     
     # Your apps (to be created)
-    'apps.suppliers',
-    'apps.orders',
-    'apps.inventory',
-    'apps.logistics',
+    'apps.suppliers.apps.SuppliersConfig', 
+    'apps.orders.apps.OrdersConfig',
+    'apps.inventory.apps.InventoryConfig',
+    'apps.logistics.apps.LogisticsConfig',
 ]
 
 MIDDLEWARE = [
@@ -91,7 +86,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'food_supply_db',       # Database name you created
-        'USER': 'yourusername',         # Your PostgreSQL username
+        'USER': 'postgres',         # Your PostgreSQL username
         'PASSWORD': 'shehan17',     # Your PostgreSQL password
         'HOST': 'localhost',
         'PORT': '5432',
