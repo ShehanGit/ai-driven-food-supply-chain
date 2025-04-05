@@ -1,5 +1,6 @@
 package com.food_supply_chain.controller;
 
+import com.food_supply_chain.model.dto.LoginResponseDTO;
 import com.food_supply_chain.model.dto.UserDTO;
 import com.food_supply_chain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody UserDTO userDTO) {
         return ResponseEntity.ok(userService.login(userDTO));
     }
 }

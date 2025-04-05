@@ -1,6 +1,7 @@
 package com.food_supply_chain.service;
 
 import com.food_supply_chain.model.User;
+import com.food_supply_chain.model.dto.LoginResponseDTO;
 import com.food_supply_chain.model.dto.UserDTO;
 import com.food_supply_chain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +36,14 @@ public class UserService implements UserDetailsService {
         return userDTO;
     }
 
-    public String login(UserDTO userDTO) {
+    public LoginResponseDTO login(UserDTO userDTO) {
         User user = userRepository.findByUsername(userDTO.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         if (!passwordEncoder.matches(userDTO.getPassword(), user.getPassword())) {
             throw new RuntimeException("Invalid credentials");
         }
-        return jwtService.generateToken(user.getUsername());
+        String token = jwtService.generateToken(user.getUsername());
+        return new LoginResponseDTO(token, "Login successful");
     }
 
     @Override
