@@ -224,6 +224,16 @@ const BatchDetailsPage: React.FC = () => {
             View Events
           </Link>
           
+          <Link to={`/batches/${id}/qr-code`} className="btn btn-outlined">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-icon">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            View QR Code
+          </Link>
+          
           <Link to={`/batches/${id}/update-status`} className="btn btn-primary">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-icon">
               <polyline points="9 11 12 14 22 4"></polyline>

@@ -10,6 +10,8 @@ import BatchDetailsPage from './pages/batches/BatchDetailsPage';
 import BatchEventsPage from './pages/batches/BatchEventsPage';
 import BatchUpdateStatusPage from './pages/batches/BatchUpdateStatusPage';
 import BatchAddEventPage from './pages/batches/BatchAddEventPage';
+import BatchQRCodePage from './pages/batches/BatchQRCodePage';
+import BatchTrackingPage from './pages/public/BatchTrackingPage';
 import AppLayout from './components/layout/AppLayout';
 
 function App() {
@@ -27,6 +29,10 @@ function App() {
               <HomePage />
             </AppLayout>
           } />
+          
+          {/* Public product tracking */}
+          <Route path="/tracking" element={<BatchTrackingPage />} />
+          <Route path="/tracking/:batchCode" element={<BatchTrackingPage />} />
           
           {/* Protected routes - require authentication */}
           <Route path="/dashboard" element={
@@ -63,6 +69,12 @@ function App() {
           <Route path="/batches/:id/add-event" element={
             <AppLayout>
               <BatchAddEventPage />
+            </AppLayout>
+          } />
+          
+          <Route path="/batches/:id/qr-code" element={
+            <AppLayout>
+              <BatchQRCodePage />
             </AppLayout>
           } />
           
