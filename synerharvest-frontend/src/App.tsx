@@ -1,43 +1,48 @@
 // src/App.tsx
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import LoginPage from './pages/auth/LoginPage';
+import RegisterPage from './pages/auth/RegisterPage';
+import HomePage from './pages/home/HomePage';
+import DashboardPage from './pages/dashboard/DashboardPage';
+import BatchesPage from './pages/batches/BatchesPage';
+import AppLayout from './components/layout/AppLayout';
 
-// Pages
-import Home from './pages/Home';
-import Login from './pages/auth/Login';
-import Register from './pages/auth/Register';
-import Dashboard from './pages/Dashboard';
-import NotFound from './pages/NotFound';
-
-// Protected Route Component
-import ProtectedRoute from './components/common/ProtectedRoute';
-
-const App: React.FC = () => {
+function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <ToastContainer position="top-right" autoClose={3000} />
+    <BrowserRouter>
+      <AuthProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/404" element={<NotFound />} />
-          <Route path="*" element={<Navigate to="/404" replace />} />
+          {/* Public routes */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          
+          {/* Home page - visible without login, but with standard layout */}
+          <Route path="/" element={
+            <AppLayout requireAuth={false}>
+              <HomePage />
+            </AppLayout>
+          } />
+          
+          {/* Protected routes - require authentication */}
+          <Route path="/dashboard" element={
+            <AppLayout>
+              <DashboardPage />
+            </AppLayout>
+          } />
+          
+          <Route path="/batches" element={
+            <AppLayout>
+              <BatchesPage />
+            </AppLayout>
+          } />
+          
+          {/* Redirect any unmatched routes to dashboard or home depending on auth status */}
+          <Route path="*" element={<Navigate to="/dashboard" />} />
         </Routes>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
