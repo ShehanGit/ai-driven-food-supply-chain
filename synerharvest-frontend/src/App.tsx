@@ -6,6 +6,10 @@ import RegisterPage from './pages/auth/RegisterPage';
 import HomePage from './pages/home/HomePage';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import BatchesPage from './pages/batches/BatchesPage';
+import BatchDetailsPage from './pages/batches/BatchDetailsPage';
+import BatchEventsPage from './pages/batches/BatchEventsPage';
+import BatchUpdateStatusPage from './pages/batches/BatchUpdateStatusPage';
+import BatchAddEventPage from './pages/batches/BatchAddEventPage';
 import AppLayout from './components/layout/AppLayout';
 
 function App() {
@@ -31,9 +35,34 @@ function App() {
             </AppLayout>
           } />
           
+          {/* Batch routes */}
           <Route path="/batches" element={
             <AppLayout>
               <BatchesPage />
+            </AppLayout>
+          } />
+          
+          <Route path="/batches/:id" element={
+            <AppLayout>
+              <BatchDetailsPage />
+            </AppLayout>
+          } />
+          
+          <Route path="/batches/:id/events" element={
+            <AppLayout>
+              <BatchEventsPage />
+            </AppLayout>
+          } />
+          
+          <Route path="/batches/:id/update-status" element={
+            <AppLayout>
+              <BatchUpdateStatusPage />
+            </AppLayout>
+          } />
+          
+          <Route path="/batches/:id/add-event" element={
+            <AppLayout>
+              <BatchAddEventPage />
             </AppLayout>
           } />
           

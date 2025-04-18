@@ -1,0 +1,386 @@
+/* Batch Pages Styles */
+
+/* Batch Details Page */
+.batch-details-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .batch-details-container {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+  
+  .batch-details-card, 
+  .batch-qr-card, 
+  .batch-actions-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+  }
+  
+  .batch-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .batch-details-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+  
+  .batch-details-content {
+    padding: 1.5rem;
+  }
+  
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.25rem;
+  }
+  
+  @media (min-width: 640px) {
+    .details-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .detail-item {
+    margin-bottom: 0.5rem;
+  }
+  
+  .detail-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+  }
+  
+  .detail-value {
+    font-size: 1rem;
+    color: var(--text-dark);
+  }
+  
+  .batch-notes {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .batch-qr-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  @media (min-width: 640px) {
+    .batch-qr-content {
+      flex-direction: row;
+      align-items: center;
+      gap: 1.5rem;
+    }
+  }
+  
+  .batch-qr-image {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .batch-qr-image {
+      margin-bottom: 0;
+    }
+  }
+  
+  .batch-qr-info {
+    flex: 1;
+    font-size: 0.875rem;
+    color: var(--text-light);
+  }
+  
+  .batch-actions-card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* Batch Events Page */
+  .batch-info-summary {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+    padding: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .batch-info-summary {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .batch-info-summary {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .batch-summary-item {
+    padding: 0.5rem;
+  }
+  
+  .summary-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+  }
+  
+  .summary-value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+  
+  .empty-events {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+  }
+  
+  .empty-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+  }
+  
+  .events-timeline {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+    padding: 2rem 1.5rem;
+    position: relative;
+  }
+  
+  .timeline-item {
+    position: relative;
+    padding-left: 2.5rem;
+    padding-bottom: 2rem;
+  }
+  
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+  
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    top: 2.5rem;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border-color);
+    z-index: 1;
+  }
+  
+  .timeline-item:last-child::before {
+    display: none;
+  }
+  
+  .timeline-marker {
+    position: absolute;
+    top: 0.25rem;
+    left: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    border: 2px solid var(--primary-color);
+    z-index: 2;
+  }
+  
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .timeline-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+  }
+  
+  .timeline-date {
+    font-size: 0.875rem;
+    color: var(--text-light);
+  }
+  
+  .timeline-body {
+    background-color: var(--background-light);
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .event-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  @media (min-width: 640px) {
+    .event-details {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .event-detail {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .event-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+  }
+  
+  .event-value {
+    font-size: 0.875rem;
+    color: var(--text-dark);
+  }
+  
+  .event-notes {
+    grid-column: 1 / -1;
+  }
+  
+  .event-notes p {
+    font-size: 0.875rem;
+    color: var(--text-dark);
+    margin: 0;
+  }
+  
+  .truncate-hash {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+  
+  .blockchain-hash {
+    grid-column: 1 / -1;
+  }
+  
+  /* Event type colors */
+  .event-created .timeline-marker {
+    background-color: rgba(34, 197, 94, 0.1);
+    border-color: var(--primary-color);
+  }
+  
+  .event-harvested .timeline-marker {
+    background-color: rgba(16, 185, 129, 0.1);
+    border-color: var(--success-color);
+  }
+  
+  .event-stored .timeline-marker {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-color: var(--secondary-color);
+  }
+  
+  .event-shipped .timeline-marker {
+    background-color: rgba(245, 158, 11, 0.1);
+    border-color: var(--warning-color);
+  }
+  
+  .event-received .timeline-marker,
+  .event-delivered .timeline-marker {
+    background-color: rgba(99, 102, 241, 0.1);
+    border-color: #6366f1;
+  }
+  
+  .event-quality .timeline-marker {
+    background-color: rgba(34, 197, 94, 0.1);
+    border-color: var(--primary-color);
+  }
+  
+  .event-recalled .timeline-marker {
+    background-color: rgba(239, 68, 68, 0.1);
+    border-color: var(--danger-color);
+  }
+  
+  .batch-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  /* Update Status & Add Event Page */
+  .update-status-form-card,
+  .add-event-form-card {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media (min-width: 640px) {
+    .form-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .spinner-sm {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+  }
+  
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
