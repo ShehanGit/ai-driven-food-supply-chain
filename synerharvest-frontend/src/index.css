@@ -1,0 +1,14 @@
+// src/index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+  @apply text-gray-800 bg-gray-50;
+}
+
+/* Custom utility classes */
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
