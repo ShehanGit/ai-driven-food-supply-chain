@@ -34,9 +34,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors().and() // Enable CORS (configured via WebConfig)
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**", "/api/public/**").permitAll()
+                        .requestMatchers("OPTIONS/**").permitAll() // Allow all OPTIONS requests
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
