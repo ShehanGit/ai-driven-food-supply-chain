@@ -12,6 +12,8 @@ import BatchUpdateStatusPage from './pages/batches/BatchUpdateStatusPage';
 import BatchAddEventPage from './pages/batches/BatchAddEventPage';
 import BatchQRCodePage from './pages/batches/BatchQRCodePage';
 import BatchTrackingPage from './pages/public/BatchTrackingPage';
+import BatchCreatePage from './pages/batches/BatchCreatePage';
+import AnalyticsPage from './pages/analytics/AnalyticsPage';
 import AppLayout from './components/layout/AppLayout';
 
 function App() {
@@ -48,6 +50,12 @@ function App() {
             </AppLayout>
           } />
           
+          <Route path="/batches/create" element={
+            <AppLayout>
+              <BatchCreatePage />
+            </AppLayout>
+          } />
+          
           <Route path="/batches/:id" element={
             <AppLayout>
               <BatchDetailsPage />
@@ -75,6 +83,13 @@ function App() {
           <Route path="/batches/:id/qr-code" element={
             <AppLayout>
               <BatchQRCodePage />
+            </AppLayout>
+          } />
+          
+          {/* Analytics route */}
+          <Route path="/analytics" element={
+            <AppLayout>
+              <AnalyticsPage />
             </AppLayout>
           } />
           

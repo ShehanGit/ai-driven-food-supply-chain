@@ -1,0 +1,526 @@
+/* Enhanced Batch Create Page Styles */
+
+.batch-create-page {
+    margin-bottom: 3rem;
+  }
+  
+  .create-batch-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  /* Progress Steps */
+  .progress-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    position: relative;
+    padding: 0 1rem;
+  }
+  
+  .progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: white;
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .step-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-light);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .progress-step.active .step-number {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+  }
+  
+  .progress-step.active .step-label {
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+  
+  .progress-step.completed .step-number {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+  }
+  
+  .progress-step.completed .step-number::after {
+    content: '✓';
+    position: absolute;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .step-connector {
+    flex: 1;
+    height: 2px;
+    background-color: var(--border-color);
+    margin: 0 0.5rem;
+    position: relative;
+    top: -18px;
+    z-index: 0;
+  }
+  
+  /* Form Card */
+  .create-batch-form-card {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  /* Form Step */
+  .form-step {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .step-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+  }
+  
+  /* Grid Layout */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media (min-width: 640px) {
+    .form-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+  
+  /* Form Controls */
+  .form-control {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+    outline: none;
+  }
+  
+  .form-control::placeholder {
+    color: #a3a3a3;
+  }
+  
+  .form-control-lg {
+    padding: 1rem 1.25rem;
+    font-size: 1.125rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+  
+  .form-text {
+    margin-top: 0.375rem;
+    font-size: 0.8125rem;
+    color: var(--text-light);
+  }
+  
+  .optional-text {
+    font-size: 0.75rem;
+    font-weight: normal;
+    color: var(--text-light);
+    margin-left: 0.5rem;
+  }
+  
+  .input-with-button {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .input-with-button .form-control {
+    flex: 1;
+  }
+  
+  .input-button {
+    white-space: nowrap;
+  }
+  
+  /* Product Selection */
+  .product-selection {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .selected-product-preview {
+    background-color: var(--background-light);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    margin-top: 0.5rem;
+  }
+  
+  .product-preview-header {
+    background-color: rgba(34, 197, 94, 0.05);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .product-preview-header h4 {
+    font-size: 1rem;
+    margin: 0;
+    color: var(--primary-color);
+  }
+  
+  .product-preview-body {
+    padding: 1rem;
+  }
+  
+  .product-preview-detail {
+    margin-bottom: 0.5rem;
+    display: flex;
+  }
+  
+  .product-preview-detail .label {
+    font-weight: 600;
+    color: var(--text-light);
+    width: 120px;
+    flex-shrink: 0;
+  }
+  
+  .product-preview-detail .value {
+    color: var(--text-dark);
+  }
+  
+  /* Batch Review Card */
+  .batch-review-card {
+    background-color: var(--background-light);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f8fafc;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .review-header h4 {
+    font-size: 1.125rem;
+    margin: 0;
+    color: var(--text-dark);
+  }
+  
+  .review-product-section,
+  .review-batch-section,
+  .review-notes-section,
+  .qr-preview-section {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .review-section-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0.75rem;
+  }
+  
+  @media (min-width: 640px) {
+    .review-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .review-item {
+    padding: 0.5rem;
+    background-color: white;
+    border-radius: 0.375rem;
+    border: 1px solid #eee;
+  }
+  
+  .review-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+  }
+  
+  .review-value {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    word-break: break-word;
+  }
+  
+  .review-value.highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  
+  .review-notes {
+    padding: 0.75rem 1rem;
+    background-color: white;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    border: 1px solid #eee;
+  }
+  
+  .qr-preview {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 0.375rem;
+    border: 1px solid #eee;
+  }
+  
+  .qr-placeholder {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px dashed var(--border-color);
+    color: var(--text-light);
+  }
+  
+  .qr-info {
+    font-size: 0.875rem;
+    color: var(--text-dark);
+  }
+  
+  .qr-info p {
+    margin: 0 0 0.5rem;
+  }
+  
+  .qr-info p:last-child {
+    margin: 0;
+  }
+  
+  /* Form Actions */
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .btn-icon-right {
+    margin-left: 0.5rem;
+  }
+  
+  /* Success Message */
+  .success-message {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  
+  .success-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+  }
+  
+  .success-message h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+  }
+  
+  .success-message p {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+  
+  /* No Products Found */
+  .no-products-container {
+    max-width: 600px;
+    margin: 2rem auto;
+  }
+  
+  .no-products-card {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  
+  .no-products-icon {
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+  }
+  
+  .no-products-card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+  }
+  
+  .no-products-card p {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .no-products-card .btn {
+    margin: 0 auto;
+  }
+  
+  /* Alerts */
+  .alert {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .alert-success {
+    background-color: rgba(34, 197, 94, 0.1);
+    border-left: 4px solid var(--primary-color);
+  }
+  
+  .alert-danger {
+    background-color: rgba(239, 68, 68, 0.1);
+    border-left: 4px solid var(--danger-color);
+  }
+  
+  .alert-icon {
+    margin-right: 0.75rem;
+    color: inherit;
+    padding-top: 0.125rem;
+  }
+  
+  .alert-content {
+    flex: 1;
+  }
+  
+  .alert-success .alert-icon {
+    color: var(--primary-color);
+  }
+  
+  .alert-danger .alert-icon {
+    color: var(--danger-color);
+  }
+  
+  /* Badges */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    text-transform: capitalize;
+  }
+  
+  .badge-primary {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: var(--primary-color);
+  }
+  
+  .badge-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+  }
+  
+  .badge-secondary {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--secondary-color);
+  }
+  
+  /* Spinner */
+  .spinner-sm {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Utilities */
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+  
+  .mt-4 {
+    margin-top: 1rem;
+  }
