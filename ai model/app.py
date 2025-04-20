@@ -13,12 +13,9 @@ app = Flask(__name__)
 # Load models and scalers
 xgboost_model = xgb.Booster()
 xgboost_model.load_model('xgboost_demand_forecasting_model.json')
-
-# Load LSTM model with custom objects to handle 'mse' loss
 lstm_model = load_model('lstm_demand_forecasting_model.h5', custom_objects={'mse': MeanSquaredError()})
-
-feature_scaler = joblib.load('feature_scaler.joblib')
-target_scaler = joblib.load('target_scaler.joblib')
+xgboost_feature_scaler = joblib.load('feature_scaler.joblib')
+xgboost_target_scaler = joblib.load('target_scaler.joblib')
 lstm_target_scaler = np.load('scaler.npy', allow_pickle=True).item()
 
 # Features expected by models
@@ -30,6 +27,13 @@ xgboost_features = [
 lstm_features = ['Sales', 'Temperature', 'Rainfall', 'Holiday', 'Inventory', 'TransportTime', 'Urban']
 seq_length = 12  # LSTM sequence length
 
+# LSTM feature scaler (reconstructed or assumed to match training)
+# Note: If scaler.npy contains feature scaler, adjust accordingly
+lstm_feature_scaler = MinMaxScaler()
+# Fit scaler on sample data to mimic training (ideally, save this during training)
+sample_data = pd.read_csv('crop_synapse_synthetic_data.csv')[lstm_features].dropna()
+lstm_feature_scaler.fit(sample_data)
+
 @app.route('/predict/xgboost', methods=['POST'])
 def predict_xgboost():
     try:
@@ -37,12 +41,12 @@ def predict_xgboost():
         input_data = pd.DataFrame([data], columns=xgboost_features)
         
         # Scale input
-        input_scaled = feature_scaler.transform(input_data)
+        input_scaled = xgboost_feature_scaler.transform(input_data)
         dmatrix = xgb.DMatrix(input_scaled)
         
         # Predict
         pred_scaled = xgboost_model.predict(dmatrix)
-        pred = target_scaler.inverse_transform(pred_scaled.reshape(-1, 1)).flatten()[0]
+        pred = xgboost_target_scaler.inverse_transform(pred_scaled.reshape(-1, 1)).flatten()[0]
         
         # SHAP explanation
         explainer = shap.TreeExplainer(xgboost_model)
@@ -68,7 +72,7 @@ def predict_lstm():
         input_data = pd.DataFrame(data, columns=lstm_features)
         
         # Scale input
-        input_scaled = feature_scaler.transform(input_data)
+        input_scaled = lstm_feature_scaler.transform(input_data)
         input_array = np.array([input_scaled])  # Shape: (1, seq_length, n_features)
         
         # Predict
