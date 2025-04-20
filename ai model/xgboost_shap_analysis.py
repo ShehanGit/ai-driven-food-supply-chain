@@ -35,43 +35,47 @@ features.extend(['Week_of_Year', 'Month'])
 # Drop rows with NaN
 df = df.dropna()
 
-# Step 3: Prepare Data
+# Step 3: Prepare Test Data
 test_size = int(0.1 * len(df))
-test_df = df[-test_size:]  # Use last 10% for SHAP analysis
+test_df = df[-test_size:]  # Last 10% for SHAP analysis
 
 # Load scalers
-scaler = joblib.load('feature_scaler.joblib')
+feature_scaler = joblib.load('feature_scaler.joblib')
 target_scaler = joblib.load('target_scaler.joblib')
 
 # Scale test data
-test_scaled = scaler.transform(test_df[features])
-test_y = target_scaler.transform(test_df[[target]]).flatten()
+test_scaled = feature_scaler.transform(test_df[features])
 
 # Step 4: Load Trained XGBoost Model
 model = xgb.Booster()
 model.load_model('xgboost_demand_forecasting_model.json')
 
-# Step 5: Prepare DMatrix for SHAP
-dtest = xgb.DMatrix(test_scaled, label=test_y)
-
-# Step 6: SHAP Analysis
+# Step 5: SHAP Analysis
 explainer = shap.TreeExplainer(model)
 shap_values = explainer.shap_values(test_scaled)
 
-# Step 7: Visualize SHAP Summary Plot
+# Step 6: SHAP Summary Plot
 plt.figure()
 shap.summary_plot(shap_values, test_df[features], feature_names=features, show=False)
 plt.tight_layout()
 plt.savefig('shap_summary_plot.png')
 plt.close()
 
-# Step 8: Visualize SHAP Bar Plot
+# Step 7: SHAP Bar Plot
 plt.figure()
 shap.summary_plot(shap_values, test_df[features], feature_names=features, plot_type="bar", show=False)
 plt.tight_layout()
 plt.savefig('shap_bar_plot.png')
 plt.close()
 
+# Step 8: SHAP Dependence Plot for Top Feature
+top_feature = features[np.argmax(np.abs(shap_values).mean(axis=0))]
+plt.figure()
+shap.dependence_plot(top_feature, shap_values, test_scaled, feature_names=features, show=False)
+plt.tight_layout()
+plt.savefig(f'shap_dependence_{top_feature}.png')
+plt.close()
+
 # Step 9: Save SHAP Values
 np.save('shap_values.npy', shap_values)
-print("SHAP analysis completed and visualizations saved.")
+print("SHAP analysis completed. Visualizations saved as 'shap_summary_plot.png', 'shap_bar_plot.png', and 'shap_dependence_<feature>.png'.")
