@@ -1,4 +1,4 @@
-// src/pages/batches/BatchesPage.tsx
+// src/pages/batches/BatchesPage.tsx - Updated with QR Scan button
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import batchService, { Batch } from '../../services/batchService';
@@ -88,6 +88,16 @@ const BatchesPage: React.FC = () => {
             </p>
           </div>
           <div className="page-actions">
+            {/* Add QR Scanner button */}
+            <Link to="/batches/scan" className="btn btn-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-icon">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              Scan QR Code
+            </Link>
             <Link to="/batches/create" className="btn btn-primary">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-icon">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -321,6 +331,18 @@ const BatchesPage: React.FC = () => {
           )}
         </>
       )}
+      
+      {/* QR Code Quick Scan Floating Button */}
+      <div className="floating-scan-button">
+        <Link to="/batches/scan" title="Scan QR Code">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </Link>
+      </div>
     </div>
   );
 };

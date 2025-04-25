@@ -1,0 +1,44 @@
+/* Floating QR Scan Button */
+.floating-scan-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+  }
+  
+  .floating-scan-button a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  }
+  
+  .floating-scan-button a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    background-color: var(--primary-dark);
+  }
+  
+  .floating-scan-button a:active {
+    transform: translateY(0);
+  }
+  
+  /* Hide on mobile when we have the header button */
+  @media (max-width: 768px) {
+    .page-actions .btn.btn-secondary {
+      display: none; /* Hide the header scan button on mobile */
+    }
+  }
+  
+  /* Hide on large screens as we have the header button */
+  @media (min-width: 1200px) {
+    .floating-scan-button {
+      display: none;
+    }
+  }

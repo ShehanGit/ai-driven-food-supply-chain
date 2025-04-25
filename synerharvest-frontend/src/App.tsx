@@ -11,6 +11,7 @@ import BatchEventsPage from './pages/batches/BatchEventsPage';
 import BatchUpdateStatusPage from './pages/batches/BatchUpdateStatusPage';
 import BatchAddEventPage from './pages/batches/BatchAddEventPage';
 import BatchQRCodePage from './pages/batches/BatchQRCodePage';
+import BatchScanPage from './pages/batches/BatchScanPage'; // Import the new BatchScanPage
 import BatchTrackingPage from './pages/public/BatchTrackingPage';
 import BatchCreatePage from './pages/batches/BatchCreatePage';
 import AnalyticsPage from './pages/analytics/AnalyticsPage';
@@ -53,6 +54,13 @@ function App() {
           <Route path="/batches/create" element={
             <AppLayout>
               <BatchCreatePage />
+            </AppLayout>
+          } />
+          
+          {/* New QR Code Scanner Page */}
+          <Route path="/batches/scan" element={
+            <AppLayout>
+              <BatchScanPage />
             </AppLayout>
           } />
           

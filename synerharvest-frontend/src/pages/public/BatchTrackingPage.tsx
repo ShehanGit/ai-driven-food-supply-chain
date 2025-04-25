@@ -1,4 +1,4 @@
-// src/pages/public/BatchTrackingPage.tsx
+// src/pages/public/BatchTrackingPage.tsx - Improved version
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import QRCodeScanner from '../../components/qr/QRCodeScanner';
@@ -22,6 +22,7 @@ interface JourneyData {
     productType: string;
     certification: string;
     cultivationMethod: string;
+    imageUrl?: string;
   };
   events: Array<{
     id: number;
@@ -49,6 +50,7 @@ const BatchTrackingPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [showScanner, setShowScanner] = useState(!batchCode);
+  const [manualBatchCode, setManualBatchCode] = useState('');
 
   const scanCode = searchParams.get('scan') === 'true' || !batchCode;
 
@@ -90,10 +92,23 @@ const BatchTrackingPage: React.FC = () => {
     navigate(`/tracking/${detectedBatchCode}`);
   };
 
+  const handleManualSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (manualBatchCode.trim()) {
+      navigate(`/tracking/${manualBatchCode.trim()}`);
+    }
+  };
+
   // Function to format date for display
   const formatDate = (dateString?: string) => {
     if (!dateString) return 'N/A';
     return new Date(dateString).toLocaleDateString();
+  };
+
+  // Format timestamp to show date and time
+  const formatTimestamp = (timestamp: string) => {
+    const date = new Date(timestamp);
+    return date.toLocaleString();
   };
 
   // Function to determine status badge class
@@ -112,11 +127,23 @@ const BatchTrackingPage: React.FC = () => {
     }
   };
 
+  const resetScanner = () => {
+    setJourneyData(null);
+    setError('');
+    setManualBatchCode('');
+    navigate('/tracking?scan=true');
+  };
+
   return (
     <div className="public-tracking-page">
       <div className="tracking-header">
         <div className="tracking-logo">
-          <img src="/logo.svg" alt="SynerHarvest Logo" />
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="logo-icon">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <path d="M12 22V12"></path>
+            <path d="M12 12L3 5"></path>
+            <path d="M12 12l9-7"></path>
+          </svg>
           <h1>SynerHarvest</h1>
         </div>
         <h2 className="tracking-title">Product Journey Tracker</h2>
@@ -138,90 +165,182 @@ const BatchTrackingPage: React.FC = () => {
         </div>
       )}
 
-      {scanCode && (
+      {scanCode && !isLoading && !journeyData && (
         <div className="scanner-section">
           <div className="card">
-            <h3>Scan a QR Code</h3>
-            <p>Point your camera at a product's QR code to view its journey.</p>
-            <QRCodeScanner 
-              onScanSuccess={handleScanSuccess}
-              width={300}
-              height={300}
-              className="mt-4"
-            />
-            <div className="manual-entry mt-4">
-              <p>Or enter a batch code manually:</p>
-              <div className="manual-code-form">
+            <div className="scanner-header">
+              <h3>Scan a QR Code</h3>
+              <p>Point your camera at a product's QR code to view its journey</p>
+            </div>
+            
+            {showScanner ? (
+              <div className="scanner-active">
+                <QRCodeScanner 
+                  onScanSuccess={handleScanSuccess}
+                  width={350}
+                  height={350}
+                  className="qr-scanner"
+                />
+                <button 
+                  className="btn btn-outlined mt-4"
+                  onClick={() => setShowScanner(false)}
+                >
+                  Cancel Scanning
+                </button>
+              </div>
+            ) : (
+              <div className="scanner-inactive">
+                <div className="scanner-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                </div>
+                <button 
+                  className="btn btn-primary mt-4"
+                  onClick={() => setShowScanner(true)}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-icon">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                  </svg>
+                  Start Scanner
+                </button>
+              </div>
+            )}
+            
+            <div className="scanner-divider">
+              <span>or</span>
+            </div>
+            
+            <form className="manual-entry" onSubmit={handleManualSubmit}>
+              <div className="input-with-button">
                 <input 
                   type="text" 
                   className="form-control" 
-                  placeholder="Enter batch code"
-                  onChange={(e) => {
-                    if (e.target.value) {
-                      navigate(`/tracking/${e.target.value}`);
-                    }
-                  }}
+                  placeholder="Enter batch code manually"
+                  value={manualBatchCode}
+                  onChange={(e) => setManualBatchCode(e.target.value)}
                 />
+                <button type="submit" className="btn btn-secondary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       )}
 
-      {isLoading ? (
+      {isLoading && (
         <div className="loading-container">
           <div className="spinner"></div>
           <p>Loading product journey...</p>
         </div>
-      ) : journeyData ? (
+      )}
+
+      {journeyData && !isLoading && (
         <div className="journey-container">
+          <div className="journey-header">
+            <h3>{journeyData.product.name}</h3>
+            <button onClick={resetScanner} className="btn btn-outlined btn-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="btn-icon">
+                <path d="M22.7 16.3l-7.7-7.7 7.7-7.7M21.7 16.3H2"></path>
+              </svg>
+              Scan Another
+            </button>
+          </div>
+          
           <div className="product-overview card">
             <div className="product-header">
-              <h3>{journeyData.product.name}</h3>
-              <span className={`badge ${getStatusBadgeClass(journeyData.batch.status)}`}>
-                {journeyData.batch.status.replace('_', ' ')}
-              </span>
+              <div className="product-title-group">
+                <h3>{journeyData.product.name}</h3>
+                <span className={`badge ${getStatusBadgeClass(journeyData.batch.status)}`}>
+                  {journeyData.batch.status.replace('_', ' ')}
+                </span>
+              </div>
+              {journeyData.product.organic && (
+                <div className="organic-badge">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                  <span>Organic</span>
+                </div>
+              )}
             </div>
             
             <div className="product-details">
-              <div className="detail-row">
-                <div className="detail-item">
-                  <span className="detail-label">Batch Code</span>
-                  <span className="detail-value">{journeyData.batch.batchCode}</span>
-                </div>
-                <div className="detail-item">
-                  <span className="detail-label">Production Date</span>
-                  <span className="detail-value">{formatDate(journeyData.batch.productionDate)}</span>
-                </div>
-                <div className="detail-item">
-                  <span className="detail-label">Expiration Date</span>
-                  <span className="detail-value">{formatDate(journeyData.batch.expirationDate)}</span>
-                </div>
-              </div>
-              
-              <div className="product-description">
-                <span className="detail-label">Product Description</span>
-                <p>{journeyData.product.description}</p>
-              </div>
-              
-              <div className="product-certifications">
-                {journeyData.product.organic && (
-                  <div className="certification organic">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <div className="product-image-container">
+                {journeyData.product.imageUrl ? (
+                  <img src={journeyData.product.imageUrl} alt={journeyData.product.name} className="product-image" />
+                ) : (
+                  <div className="product-image-placeholder">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                      <polyline points="21 15 16 10 5 21"></polyline>
                     </svg>
-                    <span>Organic</span>
                   </div>
                 )}
-                {journeyData.product.certification && (
-                  <div className="certification">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="8" r="7"></circle>
-                      <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-                    </svg>
-                    <span>{journeyData.product.certification}</span>
+              </div>
+              
+              <div className="product-info">
+                <div className="detail-row">
+                  <div className="detail-item">
+                    <span className="detail-label">Batch Code</span>
+                    <span className="detail-value highlight">{journeyData.batch.batchCode}</span>
                   </div>
-                )}
+                  <div className="detail-item">
+                    <span className="detail-label">Production Date</span>
+                    <span className="detail-value">{formatDate(journeyData.batch.productionDate)}</span>
+                  </div>
+                  <div className="detail-item">
+                    <span className="detail-label">Expiration Date</span>
+                    <span className="detail-value">{formatDate(journeyData.batch.expirationDate)}</span>
+                  </div>
+                </div>
+                
+                <div className="product-description">
+                  <span className="detail-label">About this product</span>
+                  <p>{journeyData.product.description}</p>
+                </div>
+                
+                <div className="product-certifications">
+                  {journeyData.product.organic && (
+                    <div className="certification organic">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                      </svg>
+                      <span>Organic</span>
+                    </div>
+                  )}
+                  {journeyData.product.certification && (
+                    <div className="certification">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="8" r="7"></circle>
+                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                      </svg>
+                      <span>{journeyData.product.certification}</span>
+                    </div>
+                  )}
+                  {journeyData.product.cultivationMethod && (
+                    <div className="certification">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 3v18h18"></path>
+                        <path d="M3 8h9.5a2.5 2.5 0 0 1 0 5H8"></path>
+                        <path d="M7 8v5"></path>
+                        <path d="M13 8v5h3"></path>
+                        <path d="M16 10.5h2.5"></path>
+                        <path d="M18.5 8a2.5 2.5 0 0 1 0 5"></path>
+                      </svg>
+                      <span>{journeyData.product.cultivationMethod}</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -299,7 +418,7 @@ const BatchTrackingPage: React.FC = () => {
                       <div className="timeline-header">
                         <h4 className="timeline-title">{event.eventType.replace('_', ' ')}</h4>
                         <span className="timeline-date">
-                          {new Date(event.timestamp).toLocaleString()}
+                          {formatTimestamp(event.timestamp)}
                         </span>
                       </div>
                       <div className="timeline-body">
@@ -344,16 +463,46 @@ const BatchTrackingPage: React.FC = () => {
             )}
           </div>
           
+          <div className="consumer-verification-card card">
+            <div className="verification-header">
+              <h3>Verification</h3>
+              <div className="verification-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Verified</span>
+              </div>
+            </div>
+            <div className="verification-content">
+              <p>This product's journey has been verified through our blockchain-backed tracking system.</p>
+              <div className="verification-info">
+                <div className="info-item">
+                  <strong>Batch Code:</strong> {journeyData.batch.batchCode}
+                </div>
+                <div className="info-item">
+                  <strong>Verification Date:</strong> {new Date().toLocaleDateString()}
+                </div>
+              </div>
+              <div className="qr-scan-instructions">
+                <p>Share this batch code with others to let them trace this product's journey:</p>
+                <div className="batch-code-display">
+                  {journeyData.batch.batchCode}
+                </div>
+              </div>
+            </div>
+          </div>
+          
           <div className="scan-another text-center">
             <button 
               className="btn btn-primary" 
-              onClick={() => navigate('/tracking?scan=true')}
+              onClick={resetScanner}
             >
               Scan Another Product
             </button>
           </div>
         </div>
-      ) : null}
+      )}
       
       <div className="public-footer">
         <p>&copy; {new Date().getFullYear()} SynerHarvest. All rights reserved.</p>

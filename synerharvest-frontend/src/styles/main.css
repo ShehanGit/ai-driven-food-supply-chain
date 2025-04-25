@@ -9,6 +9,10 @@
 @import './analytics.css';
 @import './batch-create.css';
 @import './farmer-dashboard.css';
+@import './enhanced-qr-scanner.css';
+@import './floating-scan-button.css';
+@import './batch-scan-page.css';
+@import './batch-tracking-page.css';
 
 
 
