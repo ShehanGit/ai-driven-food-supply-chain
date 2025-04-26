@@ -16,6 +16,11 @@ import BatchCreatePage from './pages/batches/BatchCreatePage';
 import AnalyticsPage from './pages/analytics/AnalyticsPage';
 import AppLayout from './components/layout/AppLayout';
 
+import ProductsPage from './pages/products/ProductsPage';
+import ProductCreatePage from './pages/products/ProductCreatePage';
+import ProductDetailsPage from './pages/products/ProductDetailsPage';
+import ProductEditPage from './pages/products/ProductEditPage';
+
 function App() {
   return (
     <BrowserRouter>
@@ -92,6 +97,32 @@ function App() {
               <AnalyticsPage />
             </AppLayout>
           } />
+
+           {/* Products routes */}
+           <Route path="/products" element={
+            <AppLayout>
+              <ProductsPage />
+            </AppLayout>
+          } />
+          
+          <Route path="/products/create" element={
+            <AppLayout>
+              <ProductCreatePage />
+            </AppLayout>
+          } />
+          
+          <Route path="/products/:id" element={
+            <AppLayout>
+              <ProductDetailsPage />
+            </AppLayout>
+          } />
+          
+          <Route path="/products/:id/edit" element={
+            <AppLayout>
+              <ProductEditPage />
+            </AppLayout>
+          } />
+          
           
           {/* Redirect any unmatched routes to dashboard or home depending on auth status */}
           <Route path="*" element={<Navigate to="/dashboard" />} />

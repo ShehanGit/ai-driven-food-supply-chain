@@ -10,6 +10,7 @@
 @import './batch-create.css';
 @import './farmer-dashboard.css';
 @import './role-actions.css';
+@import './products.css';
 
 
 
@@ -79,7 +80,7 @@ h3 {
 }
 
 .btn {
-  display: inline-block;
+  /* display: inline-block; */
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 500;
