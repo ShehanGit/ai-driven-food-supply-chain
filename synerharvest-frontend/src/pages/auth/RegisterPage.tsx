@@ -17,7 +17,7 @@ const RegisterPage: React.FC = () => {
     role: 'FARMER', // Default role
     companyName: '',
     companyAddress: '',
-    locationCoordinates: '',
+    locationCoordinates: '7.8731,80.7718', // Default coordinates (central Sri Lanka)
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -62,309 +62,235 @@ const RegisterPage: React.FC = () => {
     setIsLoading(true);
     try {
       const { confirmPassword, ...registerData } = formData;
+      
+      // Log the data we're sending to help debug API issues
+      console.log('Sending registration data:', registerData);
+      
       await register(registerData);
       navigate('/dashboard');
     } catch (err: any) {
-      const responseErrors = err.response?.data?.errors || {};
-      const errorMsg = err.response?.data?.message || 'Registration failed. Please try again.';
+      console.error('Registration error:', err.response?.data);
       
-      setErrors((prev) => ({
-        ...prev,
-        ...Object.fromEntries(
-          Object.entries(responseErrors).map(([key, value]) => [key, value as string])
-        ),
-        form: errorMsg,
-      }));
+      // Extract validation errors if available
+      const errorData = err.response?.data;
+      
+      if (errorData?.errors) {
+        // Set individual field errors
+        setErrors({
+          ...errorData.errors,
+          form: errorData.message || 'Registration failed. Please check the form for errors.'
+        });
+        
+        // Log specific validation errors to help debug
+        Object.entries(errorData.errors).forEach(([field, message]) => {
+          console.log(`Validation error for ${field}: ${message}`);
+        });
+      } else {
+        // Generic error handling
+        setErrors({
+          form: errorData?.message || err.message || 'Registration failed. Please try again.'
+        });
+      }
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="flex justify-center">
-          <img
-            className="h-12 w-auto"
-            src="/logo.svg"
-            alt="SynerHarvest Logo"
-          />
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <div className="auth-logo">
+            <img src="/logo.svg" alt="SynerHarvest Logo" />
+          </div>
+          <h1 className="auth-title">Create your account</h1>
+          <p className="auth-subtitle">
+            Or <Link to="/login">sign in to your existing account</Link>
+          </p>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Create your account
-        </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
-          Or{' '}
-          <Link to="/login" className="font-medium text-primary-600 hover:text-primary-500">
-            sign in to your existing account
-          </Link>
-        </p>
-      </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          {errors.form && (
-            <div className="mb-4 bg-red-50 border-l-4 border-red-400 p-4">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm text-red-700">{errors.form}</p>
-                </div>
-              </div>
+        {errors.form && (
+          <div className="alert alert-danger mx-6 mt-4">
+            <div className="alert-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
             </div>
-          )}
+            <div className="alert-content">{errors.form}</div>
+          </div>
+        )}
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-              {/* Username */}
-              <div className="sm:col-span-3">
-                <label htmlFor="username" className="block text-sm font-medium text-gray-700">
-                  Username
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    required
-                    value={formData.username}
-                    onChange={handleChange}
-                    className={`shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md ${
-                      errors.username ? 'border-red-300' : ''
-                    }`}
-                  />
-                  {errors.username && (
-                    <p className="mt-2 text-sm text-red-600">{errors.username}</p>
-                  )}
-                </div>
-              </div>
-
-              {/* Email */}
-              <div className="sm:col-span-3">
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email address
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className={`shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md ${
-                      errors.email ? 'border-red-300' : ''
-                    }`}
-                  />
-                  {errors.email && (
-                    <p className="mt-2 text-sm text-red-600">{errors.email}</p>
-                  )}
-                </div>
-              </div>
-
-              {/* First Name */}
-              <div className="sm:col-span-3">
-                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-                  First name
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    name="firstName"
-                    id="firstName"
-                    required
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    className={`shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md ${
-                      errors.firstName ? 'border-red-300' : ''
-                    }`}
-                  />
-                  {errors.firstName && (
-                    <p className="mt-2 text-sm text-red-600">{errors.firstName}</p>
-                  )}
-                </div>
-              </div>
-
-              {/* Last Name */}
-              <div className="sm:col-span-3">
-                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-                  Last name
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    name="lastName"
-                    id="lastName"
-                    required
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    className={`shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md ${
-                      errors.lastName ? 'border-red-300' : ''
-                    }`}
-                  />
-                  {errors.lastName && (
-                    <p className="mt-2 text-sm text-red-600">{errors.lastName}</p>
-                  )}
-                </div>
-              </div>
-
-              {/* Password */}
-              <div className="sm:col-span-3">
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                  Password
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    required
-                    value={formData.password}
-                    onChange={handleChange}
-                    className={`shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md ${
-                      errors.password ? 'border-red-300' : ''
-                    }`}
-                  />
-                  {errors.password && (
-                    <p className="mt-2 text-sm text-red-600">{errors.password}</p>
-                  )}
-                </div>
-              </div>
-
-              {/* Confirm Password */}
-              <div className="sm:col-span-3">
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-                  Confirm password
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    id="confirmPassword"
-                    required
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    className={`shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md ${
-                      errors.confirmPassword ? 'border-red-300' : ''
-                    }`}
-                  />
-                  {errors.confirmPassword && (
-                    <p className="mt-2 text-sm text-red-600">{errors.confirmPassword}</p>
-                  )}
-                </div>
-              </div>
-
-              {/* Phone Number */}
-              <div className="sm:col-span-3">
-                <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
-                  Phone number
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    name="phoneNumber"
-                    id="phoneNumber"
-                    value={formData.phoneNumber}
-                    onChange={handleChange}
-                    className="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
-              {/* Role */}
-              <div className="sm:col-span-3">
-                <label htmlFor="role" className="block text-sm font-medium text-gray-700">
-                  Role
-                </label>
-                <div className="mt-1">
-                  <select
-                    id="role"
-                    name="role"
-                    required
-                    value={formData.role}
-                    onChange={handleChange}
-                    className={`shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md ${
-                      errors.role ? 'border-red-300' : ''
-                    }`}
-                  >
-                    <option value="FARMER">Farmer</option>
-                    <option value="DISTRIBUTOR">Distributor</option>
-                    <option value="RETAILER">Retailer</option>
-                    <option value="CONSUMER">Consumer</option>
-                  </select>
-                  {errors.role && (
-                    <p className="mt-2 text-sm text-red-600">{errors.role}</p>
-                  )}
-                </div>
-              </div>
-
-              {/* Company Name */}
-              <div className="sm:col-span-6">
-                <label htmlFor="companyName" className="block text-sm font-medium text-gray-700">
-                  Company name
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    name="companyName"
-                    id="companyName"
-                    value={formData.companyName}
-                    onChange={handleChange}
-                    className="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
-              {/* Company Address */}
-              <div className="sm:col-span-6">
-                <label htmlFor="companyAddress" className="block text-sm font-medium text-gray-700">
-                  Company address
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    name="companyAddress"
-                    id="companyAddress"
-                    value={formData.companyAddress}
-                    onChange={handleChange}
-                    className="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
-              {/* Location Coordinates */}
-              <div className="sm:col-span-6">
-                <label htmlFor="locationCoordinates" className="block text-sm font-medium text-gray-700">
-                  Location coordinates (latitude,longitude)
-                </label>
-                <div className="mt-1">
-                  <input
-                    type="text"
-                    name="locationCoordinates"
-                    id="locationCoordinates"
-                    placeholder="e.g. 40.7128,-74.0060"
-                    value={formData.locationCoordinates}
-                    onChange={handleChange}
-                    className="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <div className="register-grid">
+            {/* Username */}
+            <div className="auth-input-group">
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                className={`auth-input ${errors.username ? 'error' : ''}`}
+                value={formData.username}
+                onChange={handleChange}
+                required
+              />
+              {errors.username && <div className="error-message">{errors.username}</div>}
             </div>
 
-            <div>
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+            {/* Email */}
+            <div className="auth-input-group">
+              <label htmlFor="email">Email address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className={`auth-input ${errors.email ? 'error' : ''}`}
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+              {errors.email && <div className="error-message">{errors.email}</div>}
+            </div>
+
+            {/* First Name */}
+            <div className="auth-input-group">
+              <label htmlFor="firstName">First name</label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                className={`auth-input ${errors.firstName ? 'error' : ''}`}
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+              />
+              {errors.firstName && <div className="error-message">{errors.firstName}</div>}
+            </div>
+
+            {/* Last Name */}
+            <div className="auth-input-group">
+              <label htmlFor="lastName">Last name</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                className={`auth-input ${errors.lastName ? 'error' : ''}`}
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+              />
+              {errors.lastName && <div className="error-message">{errors.lastName}</div>}
+            </div>
+
+            {/* Password */}
+            <div className="auth-input-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                className={`auth-input ${errors.password ? 'error' : ''}`}
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+              {errors.password && <div className="error-message">{errors.password}</div>}
+            </div>
+
+            {/* Confirm Password */}
+            <div className="auth-input-group">
+              <label htmlFor="confirmPassword">Confirm password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                className={`auth-input ${errors.confirmPassword ? 'error' : ''}`}
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+              {errors.confirmPassword && <div className="error-message">{errors.confirmPassword}</div>}
+            </div>
+
+            {/* Phone Number */}
+            <div className="auth-input-group">
+              <label htmlFor="phoneNumber">Phone number</label>
+              <input
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                className="auth-input"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Role */}
+            <div className="auth-input-group">
+              <label htmlFor="role">Role</label>
+              <select
+                id="role"
+                name="role"
+                className={`auth-input ${errors.role ? 'error' : ''}`}
+                value={formData.role}
+                onChange={handleChange}
+                required
               >
-                {isLoading ? 'Creating account...' : 'Create account'}
-              </button>
+                <option value="FARMER">Farmer</option>
+                <option value="DISTRIBUTOR">Distributor</option>
+                <option value="RETAILER">Retailer</option>
+                <option value="CONSUMER">Consumer</option>
+              </select>
+              {errors.role && <div className="error-message">{errors.role}</div>}
             </div>
-          </form>
+
+            {/* Company Name */}
+            <div className="auth-input-group register-full-width">
+              <label htmlFor="companyName">Company name</label>
+              <input
+                type="text"
+                id="companyName"
+                name="companyName"
+                className="auth-input"
+                value={formData.companyName}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Company Address */}
+            <div className="auth-input-group register-full-width">
+              <label htmlFor="companyAddress">Company address</label>
+              <input
+                type="text"
+                id="companyAddress"
+                name="companyAddress"
+                className="auth-input"
+                value={formData.companyAddress}
+                onChange={handleChange}
+              />
+            </div>
+
+            {/* Removed location coordinates field as requested */}
+          </div>
+
+          <button type="submit" className="auth-submit" disabled={isLoading}>
+            {isLoading ? (
+              <>
+                <span className="auth-loading"></span>
+                Creating account...
+              </>
+            ) : (
+              'Create account'
+            )}
+          </button>
+        </form>
+
+        <div className="auth-footer">
+          <p className="auth-footer-text">
+            Already have an account? <Link to="/login" className="auth-footer-link">Sign in</Link>
+          </p>
         </div>
       </div>
     </div>

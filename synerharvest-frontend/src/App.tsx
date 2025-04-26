@@ -5,17 +5,36 @@ import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import HomePage from './pages/home/HomePage';
 import DashboardPage from './pages/dashboard/DashboardPage';
+
+// Batch pages
 import BatchesPage from './pages/batches/BatchesPage';
 import BatchDetailsPage from './pages/batches/BatchDetailsPage';
 import BatchEventsPage from './pages/batches/BatchEventsPage';
 import BatchUpdateStatusPage from './pages/batches/BatchUpdateStatusPage';
 import BatchAddEventPage from './pages/batches/BatchAddEventPage';
 import BatchQRCodePage from './pages/batches/BatchQRCodePage';
-import BatchScanPage from './pages/batches/BatchScanPage'; // Import the new BatchScanPage
 import BatchTrackingPage from './pages/public/BatchTrackingPage';
 import BatchCreatePage from './pages/batches/BatchCreatePage';
+
+// Product pages
+import ProductsPage from './pages/products/ProductsPage';
+import ProductCreatePage from './pages/products/ProductCreatePage';
+import ProductDetailsPage from './pages/products/ProductDetailsPage';
+import ProductEditPage from './pages/products/ProductEditPage';
+
+
+// Analytics page
 import AnalyticsPage from './pages/analytics/AnalyticsPage';
+
+// Main layout
 import AppLayout from './components/layout/AppLayout';
+
+
+
+// // AI features
+// import DemandForecastPage from './pages/ai/DemandForecastPage';
+// import AnomalyDetectionPage from './pages/ai/AnomalyDetectionPage';
+// import CarbonFootprintPage from './pages/ai/CarbonFootprintPage';
 
 function App() {
   return (
@@ -44,6 +63,33 @@ function App() {
             </AppLayout>
           } />
           
+          {/* Products routes */}
+          <Route path="/products" element={
+            <AppLayout>
+              <ProductsPage />
+            </AppLayout>
+          } />
+          
+          <Route path="/products/create" element={
+            <AppLayout>
+              <ProductCreatePage />
+            </AppLayout>
+          } />
+          
+          <Route path="/products/:id" element={
+            <AppLayout>
+              <ProductDetailsPage />
+            </AppLayout>
+          } />
+          
+          <Route path="/products/:id/edit" element={
+            <AppLayout>
+              <ProductEditPage />
+            </AppLayout>
+          } />
+          
+          
+          
           {/* Batch routes */}
           <Route path="/batches" element={
             <AppLayout>
@@ -54,13 +100,6 @@ function App() {
           <Route path="/batches/create" element={
             <AppLayout>
               <BatchCreatePage />
-            </AppLayout>
-          } />
-          
-          {/* New QR Code Scanner Page */}
-          <Route path="/batches/scan" element={
-            <AppLayout>
-              <BatchScanPage />
             </AppLayout>
           } />
           
@@ -100,6 +139,9 @@ function App() {
               <AnalyticsPage />
             </AppLayout>
           } />
+          
+          
+         
           
           {/* Redirect any unmatched routes to dashboard or home depending on auth status */}
           <Route path="*" element={<Navigate to="/dashboard" />} />

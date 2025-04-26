@@ -186,3 +186,49 @@
   .register-full-width {
     grid-column: 1 / -1;
   }
+
+
+  /* Additional styles for RegisterPage */
+.error {
+  border-color: var(--danger-color) !important;
+}
+
+.error-message {
+  color: var(--danger-color);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Form grid layout adjustments */
+.register-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .register-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.register-full-width {
+  grid-column: 1 / -1;
+}
+
+/* Utility classes */
+.mx-6 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+/* Adjust auth-card for the longer registration form */
+@media (min-width: 768px) {
+  .auth-card {
+    max-width: 42rem;
+  }
+}
