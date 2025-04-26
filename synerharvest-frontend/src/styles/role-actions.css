@@ -1,0 +1,378 @@
+/* Role-Based Actions Styles */
+
+/* Tracking grid for two-column layout */
+.tracking-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 960px) {
+    .tracking-grid {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+  
+  .tracking-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .tracking-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* Role Actions Panel */
+  .role-actions-panel {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  
+  .role-actions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--background-light);
+  }
+  
+  .role-actions-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .role-badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .back-button:hover {
+    color: var(--text-dark);
+  }
+  
+  .role-actions-content {
+    padding: 1.5rem;
+  }
+  
+  /* Action Buttons Grid */
+  .action-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  @media (min-width: 480px) {
+    .action-buttons {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1.25rem 1rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .action-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-color: var(--primary-color);
+  }
+  
+  .action-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+  
+  .action-label {
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  /* Action Forms */
+  .action-form {
+    background-color: var(--background-light);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .form-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+    outline: none;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  /* Action Results */
+  .action-result {
+    padding: 1.5rem;
+    text-align: center;
+  }
+  
+  .verification-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .verification-icon {
+    color: var(--success-color);
+    margin-bottom: 1rem;
+  }
+  
+  .verification-success h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  /* Help Card */
+  .tracking-help {
+    padding: 1.5rem;
+  }
+  
+  .tracking-help h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .tracking-help p {
+    margin-bottom: 1rem;
+  }
+  
+  .help-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--background-light);
+    border-radius: 0.375rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .help-link:hover {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: var(--primary-color);
+  }
+  
+  .help-link:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Alerts */
+  .alert {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .alert-success {
+    background-color: rgba(34, 197, 94, 0.1);
+    border-left: 4px solid var(--success-color);
+  }
+  
+  .alert-danger {
+    background-color: rgba(239, 68, 68, 0.1);
+    border-left: 4px solid var(--danger-color);
+  }
+  
+  .alert-icon {
+    margin-right: 0.75rem;
+    color: inherit;
+    padding-top: 0.125rem;
+  }
+  
+  .alert-content {
+    flex: 1;
+  }
+  
+  .alert-success .alert-icon {
+    color: var(--success-color);
+  }
+  
+  .alert-danger .alert-icon {
+    color: var(--danger-color);
+  }
+  
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  .btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+  }
+  
+  .btn-secondary:hover {
+    background-color: var(--secondary-dark);
+  }
+  
+  .btn-success {
+    background-color: var(--success-color);
+    color: white;
+  }
+  
+  .btn-success:hover {
+    background-color: var(--success-dark);
+  }
+  
+  .btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+  }
+  
+  .btn-danger:hover {
+    background-color: var(--danger-dark);
+  }
+  
+  .btn-outlined {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+  }
+  
+  .btn-outlined:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+  
+  .btn-icon {
+    margin-right: 0.5rem;
+  }
+  
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* Spinner */
+  .spinner-sm {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+    margin-right: 0.5rem;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Utility classes */
+  .mt-4 {
+    margin-top: 1rem;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
