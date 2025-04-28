@@ -117,7 +117,7 @@ Intelligent tools powered by machine learning and predictive analytics.
 ### Backend Setup
 
 ```bash
-git clone https://github.com/yourusername/synerharvest.git
+git clone https://github.com/ShehanGit/ai-driven-food-supply-chain.git
 cd synerharvest
 
 # Configure database
