@@ -11,7 +11,7 @@ SynerHarvest is a comprehensive platform connecting farmers, distributors, retai
 
 **Live Demo:** [http://synerharvest.sor2.online/](http://synerharvest.sor2.online/)
 
-![SynerHarvest Dashboard](docs/screenshots/dashboard.png)
+
 
 ## ✨ Key Features
 
@@ -73,7 +73,7 @@ Intelligent tools powered by machine learning and predictive analytics.
 - Demand forecasting based on historical data and market trends
 - Anomaly detection for quality assurance
 - Predictive maintenance for storage facilities
-- Optimization algorithms for transport routing
+
 
 ## 🛠️ Technology Stack
 
@@ -100,9 +100,8 @@ Intelligent tools powered by machine learning and predictive analytics.
   - react-router-dom
 
 ### Deployment
-- **Server:** AWS EC2
+- **Server:** AWS EC2 
 - **Database:** AWS RDS (PostgreSQL)
-- **CI/CD:** GitHub Actions
 - **Containerization:** Docker
 
 ## 📸 Screenshots
@@ -154,16 +153,6 @@ cp .env.example .env
 npm run dev
 ```
 
-### Initial Login
-
-After starting both backend and frontend, you can log in with the following demo accounts:
-
-| Role | Username | Password |
-|------|----------|----------|
-| Farmer | farmer_demo | Farm@2023 |
-| Distributor | dist_demo | Dist@2023 |
-| Retailer | retail_demo | Retail@2023 |
-| Consumer | consumer_demo | Consumer@2023 |
 
 ## 📱 Application Structure
 
@@ -200,7 +189,6 @@ src/
 - JWT-based authentication
 - Role-based access control
 - Password encryption with BCrypt
-- HTTPS encryption for all communications
 - Input validation and sanitization
 - Protection against common web vulnerabilities
 
@@ -231,13 +219,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Contributors
 
-- Your Name - [your.email@example.com](mailto:your.email@example.com)
+- Shehan Vinod - [shehanvinodwannigama@gmail.com](mailto:shehanvinodwannigama@gmail.com)
 
 ## 🔗 Links
 
 - [Live Demo](http://synerharvest.sor2.online/)
 - [GitHub Repository](https://github.com/yourusername/synerharvest)
-- [Issue Tracker](https://github.com/yourusername/synerharvest/issues)
+
 
 ---
 
