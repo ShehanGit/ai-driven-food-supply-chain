@@ -1,166 +1,175 @@
-const fs = require('fs');
-const path = require('path');
+# SynerHarvest
+  
+## AI-driven food supply chain management system
 
-// README content
-const readmeContent = `# SynerHarvest: AI-Driven Food Supply Chain Management System
-
-<div align="center">
-  <img src="frontend/public/logo.svg" alt="SynerHarvest Logo" width="200"/>
-  <h3>Transparency from Farm to Fork</h3>
-</div>
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen.svg)](http://synerharvest.sor2.online/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ## 📋 Overview
 
-SynerHarvest is a comprehensive solution for managing and tracking food products throughout the supply chain. The platform connects farmers, distributors, retailers, and consumers, providing end-to-end visibility and traceability for food products from their origin to the consumer's table.
+SynerHarvest is a comprehensive platform connecting farmers, distributors, retailers, and consumers through an end-to-end food supply chain management system. The application provides complete traceability of food products from farm to table, enhancing food safety, reducing waste, and building consumer trust through transparency.
 
-Using blockchain-inspired technology, AI-driven analytics, and IoT integration, SynerHarvest ensures food safety, reduces waste, optimizes logistics, and builds consumer trust through transparency.
+**Live Demo:** [http://synerharvest.sor2.online/](http://synerharvest.sor2.online/)
+
+![SynerHarvest Dashboard](docs/screenshots/dashboard.png)
 
 ## ✨ Key Features
 
-### 🧑‍🌾 Role-Based Functionality
 
-- **Farmers**: Create and manage food batches, record harvests, and monitor products
-- **Distributors**: Track shipments, record transport conditions, and optimize routes
-- **Retailers**: Manage inventory, record sales, and verify product authenticity
-- **Consumers**: Trace product origins and journey by scanning QR codes
+### Data Entry and Management
 
-### 🔄 Complete Traceability
+Comprehensive tools for farmers, distributors, and retailers to log and manage product information throughout the supply chain.
+
+- Farmers can create and manage food batches with detailed information
+- Distributors log transport conditions and track shipments
+- Retailers record receipt and sales of products
+- Complete audit trail of all food items
+
+
+### Traceability System
+
+End-to-end tracking of food products from farm to consumer, ensuring transparency and accountability.
 
 - Unique QR codes for each batch
-- Complete product journey tracking
-- Immutable record of all supply chain events
-- Environmental condition monitoring (temperature, humidity)
+- Complete timeline of product journey
+- Environmental condition tracking (temperature, humidity)
+- Verification of product authenticity
 
-### 📊 Analytics & Insights
 
-- Supply chain efficiency metrics
-- Product journey visualization
+### Real-time Updates
+
+Live notifications and updates when products move through the supply chain.
+
+- WebSocket integration for instant updates
+- Notification system for stakeholders
+- Real-time status changes visible to all participants
+- Immediate alerts for condition anomalies
+
+
+### Analytics Dashboard
+
+Comprehensive data visualization and analytics tools for supply chain optimization.
+
+- Key performance metrics for supply chain efficiency
 - Environmental impact assessment
-- AI-driven demand forecasting
+- Historical trend analysis
+- Custom report generation
 
-### 📱 User-Friendly Interfaces
 
-- Responsive web application
-- Public product tracking portal
+### Consumer Interface
+
+Public-facing portal where consumers can trace product origins by scanning QR codes.
+
 - Mobile-friendly QR code scanning
-- Role-specific dashboards
+- Detailed product journey visualization
+- Information about farming practices and conditions
+- Carbon footprint tracking and sustainability metrics
 
-### 🧠 AI & Advanced Features
 
-- Predictive analytics for product demand
+### AI-Driven Features
+
+Intelligent tools powered by machine learning and predictive analytics.
+
+- Demand forecasting based on historical data and market trends
 - Anomaly detection for quality assurance
-- Supply chain optimization algorithms
-- Carbon footprint tracking
+- Predictive maintenance for storage facilities
+- Optimization algorithms for transport routing
 
 ## 🛠️ Technology Stack
 
 ### Backend
-- **Framework**: Spring Boot 3.4.4
-- **Language**: Java 17
-- **Database**: PostgreSQL
-- **Security**: JWT Authentication
-- **API Documentation**: OpenAPI/Swagger
+- **Framework:** Spring Boot 3.4.4
+- **Language:** Java 17
+- **Database:** PostgreSQL
+- **Security:** JWT, Spring Security
+- **APIs:** 
+  - RESTful APIs
+  - WebSockets for real-time updates
+  - OpenAPI/Swagger documentation
 
 ### Frontend
-- **Framework**: React 19 with TypeScript
-- **Build Tool**: Vite
-- **State Management**: React Context API
-- **UI Components**: Custom components
-- **Data Visualization**: Recharts
-- **QR Code Handling**: qrcode, html5-qrcode
+- **Framework:** React 19 with TypeScript
+- **Build Tool:** Vite
+- **State Management:** React Context API
+- **Data Visualization:** Recharts
+- **Libraries:**
+  - html5-qrcode
+  - qrcode
+  - axios
+  - jwt-decode
+  - react-router-dom
 
-### DevOps & Deployment
-- **Version Control**: Git
-- **Build Tool**: Maven (backend), npm (frontend)
-- **Database Migration**: Flyway
+### Deployment
+- **Server:** AWS EC2
+- **Database:** AWS RDS (PostgreSQL)
+- **CI/CD:** GitHub Actions
+- **Containerization:** Docker
+
+## 📸 Screenshots
+
+<div align="center">
+  <img src="docs/screenshots/product_tracing.png" alt="Product Tracing" width="45%"/>
+  <img src="docs/screenshots/analytics.png" alt="Analytics Dashboard" width="45%"/>
+</div>
+
+<div align="center">
+  <img src="docs/screenshots/batch_creation.png" alt="Batch Creation" width="45%"/>
+  <img src="docs/screenshots/qr_scanning.png" alt="QR Code Scanning" width="45%"/>
+</div>
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Java 17+
-- Node.js 18+
-- PostgreSQL 14+
+- Java 17 or higher
+- Node.js 18 or higher
+- PostgreSQL 14 or higher
 - Maven 3.8+
 
 ### Backend Setup
 
-1. Clone the repository
-   \`\`\`bash
-   git clone https://github.com/yourusername/synerharvest.git
-   cd synerharvest
-   \`\`\`
+```bash
+git clone https://github.com/yourusername/synerharvest.git
+cd synerharvest
 
-2. Configure the database
-   \`\`\`bash
-   # Create PostgreSQL database
-   createdb foodsupplychain
-   \`\`\`
+# Configure database
+createdb foodsupplychain
 
-3. Configure application properties
-   \`\`\`bash
-   # Update src/main/resources/application.properties with your database credentials
-   spring.datasource.url=jdbc:postgresql://localhost:5432/foodsupplychain
-   spring.datasource.username=your_username
-   spring.datasource.password=your_password
-   \`\`\`
-
-4. Build and run the backend
-   \`\`\`bash
-   mvn clean install
-   mvn spring-boot:run
-   \`\`\`
-   The backend server will start on http://localhost:8080
+# Configure application.properties with your database credentials
+# Build and run
+mvn clean install
+mvn spring-boot:run
+```
 
 ### Frontend Setup
 
-1. Navigate to the frontend directory
-   \`\`\`bash
-   cd frontend
-   \`\`\`
+```bash
+cd frontend
+npm install
 
-2. Install dependencies
-   \`\`\`bash
-   npm install
-   \`\`\`
+# Configure environment
+cp .env.example .env
 
-3. Configure environment variables
-   \`\`\`bash
-   # Create .env file
-   echo "VITE_API_BASE_URL=http://localhost:8080/api" > .env
-   \`\`\`
-
-4. Start the development server
-   \`\`\`bash
-   npm run dev
-   \`\`\`
-   The frontend will be available at http://localhost:5173
+# Start development server
+npm run dev
+```
 
 ### Initial Login
 
 After starting both backend and frontend, you can log in with the following demo accounts:
 
-- **Farmer**: 
-  - Username: farmer_demo
-  - Password: Farm@2023
-
-- **Distributor**: 
-  - Username: dist_demo
-  - Password: Dist@2023
-
-- **Retailer**: 
-  - Username: retail_demo
-  - Password: Retail@2023
-
-- **Consumer**: 
-  - Username: consumer_demo
-  - Password: Consumer@2023
+| Role | Username | Password |
+|------|----------|----------|
+| Farmer | farmer_demo | Farm@2023 |
+| Distributor | dist_demo | Dist@2023 |
+| Retailer | retail_demo | Retail@2023 |
+| Consumer | consumer_demo | Consumer@2023 |
 
 ## 📱 Application Structure
 
 ### Backend Structure
 
-\`\`\`
+```
 src/main/java/com/food_supply_chain/
 ├── config/          # Configuration classes
 ├── controller/      # REST API controllers
@@ -171,11 +180,11 @@ src/main/java/com/food_supply_chain/
 ├── security/        # Security configuration
 ├── service/         # Business logic services
 └── util/            # Utility classes
-\`\`\`
+```
 
 ### Frontend Structure
 
-\`\`\`
+```
 src/
 ├── api/             # API client and configuration
 ├── components/      # Reusable UI components
@@ -184,170 +193,54 @@ src/
 ├── services/        # Service layer for API calls
 ├── styles/          # CSS stylesheets
 └── utils/           # Utility functions
-\`\`\`
+```
+
+## 🔒 Security Features
+
+- JWT-based authentication
+- Role-based access control
+- Password encryption with BCrypt
+- HTTPS encryption for all communications
+- Input validation and sanitization
+- Protection against common web vulnerabilities
 
 ## 📝 API Documentation
 
 API documentation is available through Swagger UI at:
-\`\`\`
+
+```
 http://localhost:8080/swagger-ui.html
-\`\`\`
-
-## 🔒 Security
-
-- **Authentication**: JWT-based token authentication
-- **Password Security**: BCrypt password hashing
-- **Authorization**: Role-based access control
-- **API Security**: CORS configuration and request validation
+```
 
 ## 🧪 Testing
 
 ### Backend Testing
-\`\`\`bash
+```bash
 mvn test
-\`\`\`
+```
 
 ### Frontend Testing
-\`\`\`bash
+```bash
 cd frontend
 npm test
-\`\`\`
-
-## 📚 Documentation
-
-Additional documentation:
-
-- [User Guide](docs/user-guide.md)
-- [API Documentation](docs/api-docs.md)
-- [Development Guide](docs/dev-guide.md)
-- [Deployment Guide](docs/deployment.md)
-
-## 📊 Screenshots
-
-<div align="center">
-  <img src="docs/screenshots/dashboard.png" alt="Dashboard" width="45%"/>
-  <img src="docs/screenshots/traceability.png" alt="Traceability" width="45%"/>
-</div>
-
-<div align="center">
-  <img src="docs/screenshots/batch_detail.png" alt="Batch Details" width="45%"/>
-  <img src="docs/screenshots/qr_code.png" alt="QR Code Tracking" width="45%"/>
-</div>
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (\`git checkout -b feature/amazing-feature\`)
-3. Commit your changes (\`git commit -m 'Add some amazing feature'\`)
-4. Push to the branch (\`git push origin feature/amazing-feature\`)
-5. Open a Pull Request
+```
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Contact
+## 👥 Contributors
 
-Project Lead - [your-email@example.com](mailto:your-email@example.com)
+- Your Name - [your.email@example.com](mailto:your.email@example.com)
 
-Project Link: [https://github.com/yourusername/synerharvest](https://github.com/yourusername/synerharvest)
+## 🔗 Links
+
+- [Live Demo](http://synerharvest.sor2.online/)
+- [GitHub Repository](https://github.com/yourusername/synerharvest)
+- [Issue Tracker](https://github.com/yourusername/synerharvest/issues)
 
 ---
 
 <div align="center">
-  <p>SynerHarvest - Bringing transparency and efficiency to the food supply chain</p>
-</div>`;
-
-// Function to create README file
-function createReadmeFile() {
-  try {
-    // Get the project root directory
-    const projectRoot = process.cwd();
-    
-    // Create README.md file
-    fs.writeFileSync(path.join(projectRoot, 'README.md'), readmeContent);
-    
-    console.log('README.md file created successfully!');
-  } catch (error) {
-    console.error('Error creating README.md file:', error);
-  }
-}
-
-// Create docs directory and placeholder files
-function createDocsFolders() {
-  try {
-    const projectRoot = process.cwd();
-    const docsDir = path.join(projectRoot, 'docs');
-    const screenshotsDir = path.join(docsDir, 'screenshots');
-    
-    // Create directories if they don't exist
-    if (!fs.existsSync(docsDir)) {
-      fs.mkdirSync(docsDir);
-    }
-    
-    if (!fs.existsSync(screenshotsDir)) {
-      fs.mkdirSync(screenshotsDir);
-    }
-    
-    // Create placeholder documentation files
-    const docs = [
-      { name: 'user-guide.md', content: '# User Guide\n\nThis document provides instructions for using the SynerHarvest application.' },
-      { name: 'api-docs.md', content: '# API Documentation\n\nThis document describes the SynerHarvest API endpoints and usage.' },
-      { name: 'dev-guide.md', content: '# Development Guide\n\nThis document provides guidelines for developers working on the SynerHarvest project.' },
-      { name: 'deployment.md', content: '# Deployment Guide\n\nThis document provides instructions for deploying the SynerHarvest application.' }
-    ];
-    
-    docs.forEach(doc => {
-      fs.writeFileSync(path.join(docsDir, doc.name), doc.content);
-    });
-    
-    console.log('Documentation placeholder files created successfully!');
-  } catch (error) {
-    console.error('Error creating documentation files:', error);
-  }
-}
-
-// Create LICENSE file
-function createLicenseFile() {
-  try {
-    const projectRoot = process.cwd();
-    const currentYear = new Date().getFullYear();
-    
-    const licenseContent = `MIT License
-
-Copyright (c) ${currentYear} SynerHarvest
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.`;
-    
-    fs.writeFileSync(path.join(projectRoot, 'LICENSE'), licenseContent);
-    
-    console.log('LICENSE file created successfully!');
-  } catch (error) {
-    console.error('Error creating LICENSE file:', error);
-  }
-}
-
-// Run the script
-createReadmeFile();
-createDocsFolders();
-createLicenseFile();
-
-console.log('All files created successfully!');
+  <p>© 2025 SynerHarvest - Bringing transparency and efficiency to the food supply chain</p>
+</div>
