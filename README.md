@@ -5,7 +5,7 @@
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen.svg)](http://synerharvest.sor2.online/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-## 📋 Overview
+## Overview
 
 SynerHarvest is a comprehensive platform connecting farmers, distributors, retailers, and consumers through an end-to-end food supply chain management system. The application provides complete traceability of food products from farm to table, enhancing food safety, reducing waste, and building consumer trust through transparency.
 
@@ -13,7 +13,7 @@ SynerHarvest is a comprehensive platform connecting farmers, distributors, retai
 
 
 
-## ✨ Key Features
+## Key Features
 
 
 ### Data Entry and Management
@@ -75,7 +75,7 @@ Intelligent tools powered by machine learning and predictive analytics.
 - Predictive maintenance for storage facilities
 
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Backend
 - **Framework:** Spring Boot 3.4.4
@@ -104,19 +104,8 @@ Intelligent tools powered by machine learning and predictive analytics.
 - **Database:** AWS RDS (PostgreSQL)
 - **Containerization:** Docker
 
-## 📸 Screenshots
 
-<div align="center">
-  <img src="docs/screenshots/product_tracing.png" alt="Product Tracing" width="45%"/>
-  <img src="docs/screenshots/analytics.png" alt="Analytics Dashboard" width="45%"/>
-</div>
-
-<div align="center">
-  <img src="docs/screenshots/batch_creation.png" alt="Batch Creation" width="45%"/>
-  <img src="docs/screenshots/qr_scanning.png" alt="QR Code Scanning" width="45%"/>
-</div>
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -154,7 +143,7 @@ npm run dev
 ```
 
 
-## 📱 Application Structure
+## Application Structure
 
 ### Backend Structure
 
@@ -184,7 +173,7 @@ src/
 └── utils/           # Utility functions
 ```
 
-## 🔒 Security Features
+## Security Features
 
 - JWT-based authentication
 - Role-based access control
@@ -200,7 +189,7 @@ API documentation is available through Swagger UI at:
 http://localhost:8080/swagger-ui.html
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Backend Testing
 ```bash
@@ -213,15 +202,15 @@ cd frontend
 npm test
 ```
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Contributors
+##  Contributors
 
 - Shehan Vinod - [shehanvinodwannigama@gmail.com](mailto:shehanvinodwannigama@gmail.com)
 
-## 🔗 Links
+## Links
 
 - [Live Demo](http://synerharvest.sor2.online/)
 - [GitHub Repository](https://github.com/yourusername/synerharvest)
