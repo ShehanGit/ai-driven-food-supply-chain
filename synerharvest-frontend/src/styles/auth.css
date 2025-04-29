@@ -437,3 +437,75 @@
     flex: 1;
   }
 }
+
+/* Approval Message Styles - Add to your existing CSS */
+
+.approval-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.success-icon {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+  color: var(--primary-color, #22c55e);
+}
+
+.approval-card {
+  background-color: var(--background-light, #f8fafc);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-color, #e5e7eb);
+  padding: 2rem;
+  margin: 1.5rem 0;
+  width: 100%;
+  text-align: center;
+}
+
+.approval-content {
+  color: var(--text-dark, #1e293b);
+}
+
+.approval-content p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.approval-content p:last-child {
+  margin-bottom: 0;
+}
+
+.approval-content strong {
+  font-weight: 600;
+  color: var(--primary-color, #22c55e);
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+/* Enhance the existing auth-submit button for the "Return to Home" link */
+.auth-submit {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  background-color: var(--primary-color, #22c55e);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+}
+
+.auth-submit:hover {
+  background-color: var(--primary-dark, #16a34a);
+}

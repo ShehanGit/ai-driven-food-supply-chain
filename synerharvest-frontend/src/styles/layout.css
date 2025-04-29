@@ -149,7 +149,7 @@
 /* Main content */
 .main-content {
   flex-grow: 1;
-  padding: 2rem;
+  /* padding: 2rem; */
   overflow-y: auto;
 }
 

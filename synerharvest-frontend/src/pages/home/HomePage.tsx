@@ -155,7 +155,7 @@ const HomePage: React.FC = () => {
               <span className="gradient-text"> SynerHarvest</span>
             </h1>
             <p className="hero-subtitle animate-in-delay-1">
-              Our integrated platform combines blockchain traceability, IoT monitoring,
+              Our integrated platform combines traceability, IoT monitoring,
               and AI-driven forecasting to revolutionize food supply chain management.
             </p>
             <div className="hero-stats animate-in-delay-2">
@@ -242,7 +242,7 @@ const HomePage: React.FC = () => {
                     <path d="M19.21 17.9v-7.76h-7.76"></path>
                   </svg>
                 </div>
-                <span>IoT Monitored</span>
+                <span>Anomaly Detection</span>
               </div>
               <div className="floating-element floating-element-4">
                 <div className="floating-element-icon">
@@ -253,7 +253,7 @@ const HomePage: React.FC = () => {
                     <path d="M19.21 17.9v-7.76h-7.76"></path>
                   </svg>
                 </div>
-                <span>IoT Monitored</span>
+                <span>Quality Control</span>
               </div>
 
               <div className="floating-element floating-element-5">

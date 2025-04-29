@@ -7,7 +7,6 @@ import logo from '../../../src/assets/images/herosection/logo2.png';
 import registerImage from '../../../src/assets/images/herosection/register2.jpg';
 // Import CSS
 
-
 const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
   const { register } = useAuth();
@@ -26,6 +25,7 @@ const RegisterPage: React.FC = () => {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
+  const [registrationSubmitted, setRegistrationSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -65,41 +65,78 @@ const RegisterPage: React.FC = () => {
     if (!validateForm()) return;
 
     setIsLoading(true);
+    
     try {
-      const { confirmPassword, ...registerData } = formData;
+      // Store the registration data in localStorage for future reference
+      // In a real application, you might send this to a database
+      const { confirmPassword, ...registrationData } = formData;
+      localStorage.setItem('pendingRegistration', JSON.stringify(registrationData));
       
-      // Log the data we're sending to help debug API issues
-      console.log('Sending registration data:', registerData);
+      // Log the data for demonstration purposes
+      console.log('Registration data saved:', registrationData);
       
-      await register(registerData);
-      navigate('/dashboard');
+      // Show the approval message instead of calling register()
+      setTimeout(() => {
+        setIsLoading(false);
+        setRegistrationSubmitted(true);
+      }, 1500);
+      
+      // Note: We're not calling the register function anymore
+      // await register(registerData);
+      // navigate('/dashboard');
+      
     } catch (err: any) {
-      console.error('Registration error:', err.response?.data);
-      
-      // Extract validation errors if available
-      const errorData = err.response?.data;
-      
-      if (errorData?.errors) {
-        // Set individual field errors
-        setErrors({
-          ...errorData.errors,
-          form: errorData.message || 'Registration failed. Please check the form for errors.'
-        });
-        
-        // Log specific validation errors to help debug
-        Object.entries(errorData.errors).forEach(([field, message]) => {
-          console.log(`Validation error for ${field}: ${message}`);
-        });
-      } else {
-        // Generic error handling
-        setErrors({
-          form: errorData?.message || err.message || 'Registration failed. Please try again.'
-        });
-      }
-    } finally {
+      console.error('Registration error:', err);
+      setErrors({
+        form: 'Something went wrong. Please try again later.'
+      });
       setIsLoading(false);
     }
   };
+
+  // If registration is submitted, show the approval message
+  if (registrationSubmitted) {
+    return (
+      <div className="auth-container">
+        <div className="auth-card">
+          <div className="auth-form-section approval-message">
+            <div className="auth-header">
+              <div className="auth-logo">
+                <img src={logo} alt="SynerHarvest Logo" className="logo-img" />
+              </div>
+              <div className="success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </div>
+              <h1 className="auth-title">Registration Submitted</h1>
+              <p className="auth-subtitle">
+                Thank you for registering with SynerHarvest!
+              </p>
+            </div>
+            
+            <div className="approval-card">
+              <div className="approval-content">
+                <p>Your registration is pending admin approval. This usually takes 24-48 hours.</p>
+                <p>Once approved, you will receive an email notification at <strong>{formData.email}</strong> with instructions to access your account.</p>
+                <p>If you have any questions, please contact our support team.</p>
+              </div>
+            </div>
+            
+            <div className="auth-footer">
+              <Link to="/" className="auth-submit">
+                Return to Home
+              </Link>
+              <p className="auth-footer-text mt-4">
+                Already have an account? <Link to="/login" className="auth-footer-link">Sign in</Link>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="auth-container">
