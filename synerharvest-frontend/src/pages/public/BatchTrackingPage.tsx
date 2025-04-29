@@ -5,6 +5,8 @@ import QRCodeScanner from '../../components/qr/QRCodeScanner';
 import RoleBasedActionPanel from '../../components/batch/RoleBasedActionPanel';
 import trackingService from '../../services/trackingService';
 import { useAuth } from '../../contexts/AuthContext';
+import logoImage from '../../assets/images/herosection/logo2.png';
+
 
 interface JourneyData {
   batch: {
@@ -126,7 +128,11 @@ const BatchTrackingPage: React.FC = () => {
     <div className="public-tracking-page">
       <div className="tracking-header">
         <div className="tracking-logo">
-          <img src="/logo.svg" alt="SynerHarvest Logo" />
+        <img 
+          src={logoImage} 
+          alt="SynerHarvest Logo" 
+          style={{ width: '90px', height: 'auto', marginRight: '10px' }}
+        />
           <h1>SynerHarvest</h1>
         </div>
         <h2 className="tracking-title">Product Journey Tracker</h2>

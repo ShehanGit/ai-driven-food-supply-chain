@@ -1,7 +1,12 @@
 // src/pages/home/HomePage.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-// import './HomePage.css';
+
+// Fix your imports by adding one more "../" to go back an additional directory level
+import farmerHeroImage from '../../assets/images/herosection/hero5.jpg';
+import distributorImage from '../../assets/images/herosection/home7.jpg';
+import retailerImage from '../../assets/images/herosection/home2.jpg';
+import consumerImage from '../../assets/images/herosection/home5.jpg';
 
 const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('farmer');
@@ -110,7 +115,7 @@ const HomePage: React.FC = () => {
   const faqs = [
     {
       question: "How does SynerHarvest ensure data integrity?",
-      answer: "SynerHarvest uses blockchain technology to create immutable records of every transaction and event in the supply chain. Once data is recorded, it cannot be altered or deleted, ensuring complete transparency and traceability."
+      answer: "SynerHarvest uses technology to create immutable records of every transaction and event in the supply chain. Once data is recorded, it cannot be altered or deleted, ensuring complete transparency and traceability."
     },
     {
       question: "Can SynerHarvest integrate with our existing systems?",
@@ -190,7 +195,7 @@ const HomePage: React.FC = () => {
               </div>
             </div>
             <div className="hero-actions animate-in-delay-3">
-              <Link to="/dashboard" className="btn btn-primary btn-lg with-icon">
+              <Link to="/register" className="btn btn-primary btn-lg with-icon">
                 <span>Get Started</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -226,9 +231,32 @@ const HomePage: React.FC = () => {
                     <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                   </svg>
                 </div>
-                <span>Blockchain Verified</span>
+                <span>Carbon Footprint Tracking</span>
               </div>
               <div className="floating-element floating-element-3">
+                <div className="floating-element-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 12.13C22 6.51 17.58 2 12.14 2 6.7 2 2 6.7 2 12.14c0 5.44 4.7 10.14 10.14 10.14.79 0 1.56-.11 2.29-.29"></path>
+                    <path d="M10.63 10.63 2.05 19.21"></path>
+                    <path d="m12.14 14.88 3.01 3.01"></path>
+                    <path d="M19.21 17.9v-7.76h-7.76"></path>
+                  </svg>
+                </div>
+                <span>IoT Monitored</span>
+              </div>
+              <div className="floating-element floating-element-4">
+                <div className="floating-element-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 12.13C22 6.51 17.58 2 12.14 2 6.7 2 2 6.7 2 12.14c0 5.44 4.7 10.14 10.14 10.14.79 0 1.56-.11 2.29-.29"></path>
+                    <path d="M10.63 10.63 2.05 19.21"></path>
+                    <path d="m12.14 14.88 3.01 3.01"></path>
+                    <path d="M19.21 17.9v-7.76h-7.76"></path>
+                  </svg>
+                </div>
+                <span>IoT Monitored</span>
+              </div>
+
+              <div className="floating-element floating-element-5">
                 <div className="floating-element-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 12.13C22 6.51 17.58 2 12.14 2 6.7 2 2 6.7 2 12.14c0 5.44 4.7 10.14 10.14 10.14.79 0 1.56-.11 2.29-.29"></path>
@@ -540,8 +568,7 @@ const HomePage: React.FC = () => {
               {activeTab === 'farmer' && (
                 <div className="role-content">
                   <div className="role-image">
-                    <img src="/src/assets/images/herosection/hero5.jpg" alt="Farmer Dashboard" />
-                  </div>
+                  <img src={farmerHeroImage} alt="Farmer Dashboard" />                  </div>
                   <div className="role-description">
                     <h3>For Farmers</h3>
                     <p>Digitize your farming operations and connect directly with distributors and retailers.</p>
@@ -571,8 +598,7 @@ const HomePage: React.FC = () => {
               {activeTab === 'distributor' && (
                 <div className="role-content">
                   <div className="role-image">
-                    <img src="/src/assets/images/herosection/home7.jpg" alt="Distributor Dashboard" />
-                  </div>
+                  <img src={distributorImage} alt="Distributor Dashboard" />                  </div>
                   <div className="role-description">
                     <h3>For Distributors</h3>
                     <p>Optimize your logistics operations and maintain product quality throughout transport.</p>
@@ -602,7 +628,7 @@ const HomePage: React.FC = () => {
               {activeTab === 'retailer' && (
                 <div className="role-content">
                   <div className="role-image">
-                    <img src="/src/assets/images/herosection/home2.jpg" alt="Retailer Dashboard" />
+                  <img src={retailerImage} alt="Retailer Dashboard" />
                   </div>
                   <div className="role-description">
                     <h3>For Retailers</h3>
@@ -633,7 +659,7 @@ const HomePage: React.FC = () => {
               {activeTab === 'consumer' && (
                 <div className="role-content">
                   <div className="role-image">
-                    <img src="/src/assets/images/herosection/home5.jpg" alt="Consumer App" />
+                  <img src={consumerImage} alt="Consumer App" />
                   </div>
                   <div className="role-description">
                     <h3>For Consumers</h3>
