@@ -210,7 +210,6 @@ const HomePage: React.FC = () => {
           </div>
           <div className="hero-image animate-in-right">
             <div className="hero-image-container">
-              <img src="/images/hero-platform.png" alt="SynerHarvest Platform" className="hero-main-image" />
               <div className="floating-element floating-element-1">
                 <div className="floating-element-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -243,33 +242,8 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="hero-wave">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#ffffff" fillOpacity="1" d="M0,160L48,149.3C96,139,192,117,288,122.7C384,128,480,160,576,165.3C672,171,768,149,864,138.7C960,128,1056,128,1152,138.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-        </div>
-        <div className="hero-clients">
-          <div className="container">
-            <h3>Trusted by industry leaders</h3>
-            <div className="client-logos">
-              <div className="client-logo">
-                <img src="/images/client1.svg" alt="Client Logo" />
-              </div>
-              <div className="client-logo">
-                <img src="/images/client2.svg" alt="Client Logo" />
-              </div>
-              <div className="client-logo">
-                <img src="/images/client3.svg" alt="Client Logo" />
-              </div>
-              <div className="client-logo">
-                <img src="/images/client4.svg" alt="Client Logo" />
-              </div>
-              <div className="client-logo">
-                <img src="/images/client5.svg" alt="Client Logo" />
-              </div>
-            </div>
-          </div>
-        </div>
+  
+        
       </section>
 
       {/* Features Section with Cards */}
@@ -289,7 +263,7 @@ const HomePage: React.FC = () => {
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 </svg>
               </div>
-              <h3 className="feature-title">Blockchain Traceability</h3>
+              <h3 className="feature-title">QR Traceability</h3>
               <p className="feature-description">
                 Immutable record of every product's journey from farm to consumer with tamper-proof verification.
               </p>
@@ -566,7 +540,7 @@ const HomePage: React.FC = () => {
               {activeTab === 'farmer' && (
                 <div className="role-content">
                   <div className="role-image">
-                    <img src="/images/farmer-dashboard.png" alt="Farmer Dashboard" />
+                    <img src="/src/assets/images/herosection/hero5.jpg" alt="Farmer Dashboard" />
                   </div>
                   <div className="role-description">
                     <h3>For Farmers</h3>
@@ -597,7 +571,7 @@ const HomePage: React.FC = () => {
               {activeTab === 'distributor' && (
                 <div className="role-content">
                   <div className="role-image">
-                    <img src="/images/distributor-dashboard.png" alt="Distributor Dashboard" />
+                    <img src="/src/assets/images/herosection/home7.jpg" alt="Distributor Dashboard" />
                   </div>
                   <div className="role-description">
                     <h3>For Distributors</h3>
@@ -613,7 +587,7 @@ const HomePage: React.FC = () => {
                       </li>
                       <li>
                         <span className="check-icon">✓</span>
-                        <span>Track chain of custody with blockchain</span>
+                        <span>Track chain of custody with QR</span>
                       </li>
                       <li>
                         <span className="check-icon">✓</span>
@@ -628,7 +602,7 @@ const HomePage: React.FC = () => {
               {activeTab === 'retailer' && (
                 <div className="role-content">
                   <div className="role-image">
-                    <img src="/images/retailer-dashboard.png" alt="Retailer Dashboard" />
+                    <img src="/src/assets/images/herosection/home2.jpg" alt="Retailer Dashboard" />
                   </div>
                   <div className="role-description">
                     <h3>For Retailers</h3>
@@ -659,7 +633,7 @@ const HomePage: React.FC = () => {
               {activeTab === 'consumer' && (
                 <div className="role-content">
                   <div className="role-image">
-                    <img src="/images/consumer-app.png" alt="Consumer App" />
+                    <img src="/src/assets/images/herosection/home5.jpg" alt="Consumer App" />
                   </div>
                   <div className="role-description">
                     <h3>For Consumers</h3>
@@ -729,8 +703,8 @@ const HomePage: React.FC = () => {
               </div>
               <div className="stat-content">
                 <div className="stat-number"><span className="counter">95</span>%</div>
-                <div className="stat-label">Supply Chain Transparency</div>
-                <div className="stat-description">End-to-end visibility from farm to consumer with blockchain verification.</div>
+                <div className="stat-label">Transparency</div>
+                <div className="stat-description">End-to-end visibility from farm to consumer.</div>
               </div>
             </div>
             
@@ -763,8 +737,33 @@ const HomePage: React.FC = () => {
                 <div className="stat-description">Enhanced brand loyalty through transparent product information.</div>
               </div>
             </div>
+            <div className="stat-card">
+              <div className="stat-icon" style={{ backgroundColor: 'rgba(59, 130, 246, 0.1)' }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2v4"></path>
+                  <path d="M12 18v4"></path>
+                  <path d="m4.93 4.93 2.83 2.83"></path>
+                  <path d="m16.24 16.24 2.83 2.83"></path>
+                  <path d="M2 12h4"></path>
+                  <path d="M18 12h4"></path>
+                  <path d="m4.93 19.07 2.83-2.83"></path>
+                  <path d="m16.24 7.76 2.83-2.83"></path>
+                </svg>
+              </div>
+              <div className="stat-content">
+                <div className="stat-number"><span className="counter">80</span>%</div>
+                <div className="stat-label">AI-Driven Forecasting</div>
+                <div className="stat-description">Predictive analytics that forecast demand, optimize inventory</div>
+              </div>
+            </div>
+            
           </div>
         </div>
+
+
+
+
+        
       </section>
 
       {/* Testimonials Section */}
@@ -788,7 +787,7 @@ const HomePage: React.FC = () => {
                   </div>
                   <div className="testimonial-author">
                     <div className="testimonial-avatar">
-                      <img src={testimonial.avatar} alt={testimonial.author} />
+                      {/* <img src={testimonial.avatar} alt={testimonial.author} /> */}
                     </div>
                     <div className="testimonial-info">
                       <h4>{testimonial.author}</h4>
@@ -866,7 +865,7 @@ const HomePage: React.FC = () => {
         </div>
         <div className="cta-wave">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#ffffff" fillOpacity="1" d="M0,32L48,48C96,64,192,96,288,128C384,160,480,192,576,186.7C672,181,768,139,864,117.3C960,96,1056,96,1152,106.7C1248,117,1344,139,1392,149.3L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+            <path fill="#ffffff" fillOpacity="1" d=""></path>
           </svg>
         </div>
       </section>
