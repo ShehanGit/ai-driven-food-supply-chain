@@ -1,4 +1,3 @@
-// src/components/layout/AppLayout.tsx
 import React, { useState, useEffect } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 import Header from './Header';
@@ -35,9 +34,14 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children, requireAuth = true }) =
 
   if (isLoading) {
     return (
-      <div className="loading-screen">
-        <div className="spinner"></div>
-        <p>Loading...</p>
+      <div className="loading-overlay">
+        <div className="loader">
+          <div className="plant-stem">
+            <div className="leaf leaf-left"></div>
+            <div className="leaf leaf-right"></div>
+          </div>
+          <p className="loading-text">Growing your experience...</p>
+        </div>
       </div>
     );
   }

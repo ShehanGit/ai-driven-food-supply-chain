@@ -11,7 +11,7 @@ import consumerImage from '../../assets/images/herosection/home5.jpg';
 import hero8 from '../../assets/images/herosection/hero8.jpg';
 import hero14 from '../../assets/images/herosection/hero14.jpg';
 import hero10 from '../../assets/images/herosection/hero10.jpg';
-import hero11 from '../../assets/images/herosection/hero11.jpg';
+import hero9 from '../../assets/images/herosection/hero9.jpg';
 import hero12 from '../../assets/images/herosection/hero12.jpg';
 import hero13 from '../../assets/images/herosection/hero13.jpg';
 
@@ -153,7 +153,7 @@ const HomePage: React.FC = () => {
     <div className="slideshow-image slideshow-image-3" style={{ backgroundImage: `url(${hero12})` }}></div>
     <div className="slideshow-image slideshow-image-4" style={{ backgroundImage: `url(${hero14})` }}></div>
     <div className="slideshow-image slideshow-image-5" style={{ backgroundImage: `url(${hero8})` }}></div>
-    <div className="slideshow-image slideshow-image-6" style={{ backgroundImage: `url(${hero11})` }}></div>
+    <div className="slideshow-image slideshow-image-6" style={{ backgroundImage: `url(${hero9})` }}></div>
     <div className="slideshow-overlay"></div>
   </div>
   
@@ -719,8 +719,8 @@ const HomePage: React.FC = () => {
                 </svg>
               </div>
               <div className="stat-content">
-                <div className="stat-number">$<span className="counter">25</span>M+</div>
-                <div className="stat-label">Cost Savings</div>
+              <div className="stat-number"><span className="counter">20</span>%</div>
+              <div className="stat-label">Cost Savings</div>
                 <div className="stat-description">Cumulative cost savings achieved by our partners through optimized operations.</div>
               </div>
             </div>
