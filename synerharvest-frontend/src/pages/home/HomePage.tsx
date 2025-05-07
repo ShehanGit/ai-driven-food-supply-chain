@@ -138,141 +138,78 @@ const HomePage: React.FC = () => {
   return (
     <div className="home-page">
       {/* Hero Section with Animated Elements */}
-      <section className="hero-section">
-        <div className="hero-particles">
-          <div className="particle particle-1"></div>
-          <div className="particle particle-2"></div>
-          <div className="particle particle-3"></div>
-          <div className="particle particle-4"></div>
-        </div>
-        <div className="container hero-container">
-          <div className="hero-content">
-            <div className="hero-badge">
-              <span className="ai-icon">✦</span> AI-Powered Platform
-            </div>
-            <h1 className="hero-title animate-in">
-              Farm to Fork <span className="hero-highlight">Transparency</span> with
-              <span className="gradient-text"> SynerHarvest</span>
-            </h1>
-            <p className="hero-subtitle animate-in-delay-1">
-              Our integrated platform combines traceability, IoT monitoring,
-              and AI-driven forecasting to revolutionize food supply chain management.
-            </p>
-            <div className="hero-stats animate-in-delay-2">
-              <div className="hero-stat">
-                <div className="hero-stat-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                  </svg>
-                </div>
-                <div className="hero-stat-content">
-                  <span className="hero-stat-number">30%</span>
-                  <span className="hero-stat-text">Less Food Waste</span>
-                </div>
-              </div>
-              <div className="hero-stat">
-                <div className="hero-stat-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                    <polyline points="17 6 23 6 23 12"></polyline>
-                  </svg>
-                </div>
-                <div className="hero-stat-content">
-                  <span className="hero-stat-number">45%</span>
-                  <span className="hero-stat-text">Increased Efficiency</span>
-                </div>
-              </div>
-              <div className="hero-stat">
-                <div className="hero-stat-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  </svg>
-                </div>
-                <div className="hero-stat-content">
-                  <span className="hero-stat-number">95%</span>
-                  <span className="hero-stat-text">Traceability</span>
-                </div>
-              </div>
-            </div>
-            <div className="hero-actions animate-in-delay-3">
-              <Link to="/register" className="btn btn-primary btn-lg with-icon">
-                <span>Get Started</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </Link>
-              <Link to="/tracking" className="btn btn-outlined btn-lg with-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="3" width="7" height="7"></rect>
-                  <rect x="14" y="3" width="7" height="7"></rect>
-                  <rect x="14" y="14" width="7" height="7"></rect>
-                  <rect x="3" y="14" width="7" height="7"></rect>
-                </svg>
-                <span>Track a Product</span>
-              </Link>
-            </div>
-          </div>
-          <div className="hero-image animate-in-right">
-            <div className="hero-image-container">
-              <div className="floating-element floating-element-1">
-                <div className="floating-element-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
-                  </svg>
-                </div>
-                <span>AI Analytics</span>
-              </div>
-              <div className="floating-element floating-element-2">
-                <div className="floating-element-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                  </svg>
-                </div>
-                <span>Carbon Footprint Tracking</span>
-              </div>
-              <div className="floating-element floating-element-3">
-                <div className="floating-element-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 12.13C22 6.51 17.58 2 12.14 2 6.7 2 2 6.7 2 12.14c0 5.44 4.7 10.14 10.14 10.14.79 0 1.56-.11 2.29-.29"></path>
-                    <path d="M10.63 10.63 2.05 19.21"></path>
-                    <path d="m12.14 14.88 3.01 3.01"></path>
-                    <path d="M19.21 17.9v-7.76h-7.76"></path>
-                  </svg>
-                </div>
-                <span>Anomaly Detection</span>
-              </div>
-              <div className="floating-element floating-element-4">
-                <div className="floating-element-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 12.13C22 6.51 17.58 2 12.14 2 6.7 2 2 6.7 2 12.14c0 5.44 4.7 10.14 10.14 10.14.79 0 1.56-.11 2.29-.29"></path>
-                    <path d="M10.63 10.63 2.05 19.21"></path>
-                    <path d="m12.14 14.88 3.01 3.01"></path>
-                    <path d="M19.21 17.9v-7.76h-7.76"></path>
-                  </svg>
-                </div>
-                <span>Quality Control</span>
-              </div>
-
-              <div className="floating-element floating-element-5">
-                <div className="floating-element-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 12.13C22 6.51 17.58 2 12.14 2 6.7 2 2 6.7 2 12.14c0 5.44 4.7 10.14 10.14 10.14.79 0 1.56-.11 2.29-.29"></path>
-                    <path d="M10.63 10.63 2.05 19.21"></path>
-                    <path d="m12.14 14.88 3.01 3.01"></path>
-                    <path d="M19.21 17.9v-7.76h-7.76"></path>
-                  </svg>
-                </div>
-                <span>IoT Monitored</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* Hero Section with Clean Design */}
+<section className="hero-section">
+  <div className="hero-background">
+    <div className="hero-gradient"></div>
+    <div className="hero-shapes">
+      <div className="hero-shape hero-shape-1"></div>
+      <div className="hero-shape hero-shape-2"></div>
+      <div className="hero-shape hero-shape-3"></div>
+    </div>
+  </div>
   
-        
-      </section>
+  <div className="container hero-container">
+    <div className="hero-content">
+      <div className="hero-badge">
+        <span className="badge-icon">✦</span> Farm-to-Table Traceability
+      </div>
+      
+      <h1 className="hero-title">
+        Transparent <span className="text-highlight">Food Supply Chain</span> with 
+        <span className="gradient-text"> SynerHarvest</span>
+      </h1>
+      
+      <p className="hero-subtitle">
+        Connect farmers, distributors, retailers, and consumers with our 
+        integrated platform for complete supply chain transparency.
+      </p>
+      
+      <div className="hero-stats">
+        <div className="hero-stat">
+          <div className="stat-value">30%</div>
+          <div className="stat-label">Less Food Waste</div>
+        </div>
+        <div className="hero-stat">
+          <div className="stat-value">45%</div>
+          <div className="stat-label">Increased Efficiency</div>
+        </div>
+        <div className="hero-stat">
+          <div className="stat-value">95%</div>
+          <div className="stat-label">Traceability</div>
+        </div>
+      </div>
+      
+      <div className="hero-actions">
+        <Link to="/register" className="btn btn-primary">
+          Get Started Free
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </Link>
+        <Link to="/tracking" className="btn btn-outlined">
+          Track a Product
+        </Link>
+      </div>
+    </div>
+    
+    <div className="hero-image">
+      <img src={farmerHeroImage} alt="SynerHarvest Platform" className="main-hero-image" />
+      <div className="hero-feature-tags">
+        {/* <div className="feature-tag feature-tag-1">QR Traceability</div>
+        <div className="feature-tag feature-tag-2">IoT Monitoring</div>
+        <div className="feature-tag feature-tag-3">AI Analytics</div> */}
+      </div>
+    </div>
+  </div>
+  
+  <div className="hero-wave">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path d="M0,50 C250,100 350,0 500,50 C650,100 750,0 900,50 C1050,100 1150,0 1300,50 L1440,50 L1440,120 L0,120 Z" fill="#ffffff"></path>
+    </svg>
+  </div>
+</section>
 
       {/* Features Section with Cards */}
       <section id="features" className={`features-section animate-on-scroll ${isVisible.features ? 'visible' : ''}`}>
