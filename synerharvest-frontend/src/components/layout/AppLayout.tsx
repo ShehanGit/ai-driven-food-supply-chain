@@ -48,7 +48,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children, requireAuth = true }) =
 
   return (
     <div className="app-container">
-      <Header toggleSidebar={toggleSidebar} />
+      <Header toggleSidebar={toggleSidebar} isHomePage={isHomePage} />
       <div className="layout">
         {showSidebar && <Sidebar isOpen={sidebarOpen} />}
         <div className={`main-content ${sidebarOpen && showSidebar ? 'with-sidebar' : ''}`}>

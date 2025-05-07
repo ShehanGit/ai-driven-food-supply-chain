@@ -7,26 +7,27 @@ import logoImage from '../../assets/images/herosection/logo2.png';
 
 interface HeaderProps {
   toggleSidebar: () => void;
+  isHomePage?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
+const Header: React.FC<HeaderProps> = ({ toggleSidebar, isHomePage = false }) => {
   const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(3);
   const [isScrolled, setIsScrolled] = useState(false);
-
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     if (isNotificationOpen) setIsNotificationOpen(false);
   };
-
+  
   const toggleNotifications = () => {
     setIsNotificationOpen(!isNotificationOpen);
     if (isMenuOpen) setIsMenuOpen(false);
   };
-
+  
   // Add scroll effect to header
   useEffect(() => {
     const handleScroll = () => {
@@ -36,13 +37,13 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
         setIsScrolled(false);
       }
     };
-
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
+  
   return (
-    <header className={`header ${isScrolled ? 'header-scrolled' : ''}`}>
+    <header className={`header ${isScrolled ? 'header-scrolled' : ''} ${isHomePage ? 'header-transparent' : ''}`}>
       <div className="container header-content">
         <div className="header-left">
           <button className="nav-toggle" onClick={toggleSidebar}>
@@ -85,7 +86,6 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
                   </svg>
                   {unreadCount > 0 && <span className="notification-badge">{unreadCount}</span>}
                 </button>
-
                 {isNotificationOpen && (
                   <div className="notification-dropdown">
                     <div className="notification-header">
@@ -145,7 +145,6 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
                   </div>
                 )}
               </div>
-
               <div className="user-menu">
                 <button className="user-menu-btn" onClick={toggleMenu}>
                   <div className="user-avatar">

@@ -137,76 +137,107 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="home-page">
-      {/* Hero Section with Animated Elements */}
-      {/* Hero Section with Clean Design */}
+     {/* Hero Section with Background Slideshow */}
 <section className="hero-section">
-  <div className="hero-background">
-    <div className="hero-gradient"></div>
-    <div className="hero-shapes">
-      <div className="hero-shape hero-shape-1"></div>
-      <div className="hero-shape hero-shape-2"></div>
-      <div className="hero-shape hero-shape-3"></div>
-    </div>
+  {/* Background Slideshow */}
+  <div className="hero-slideshow">
+    <div className="slideshow-image slideshow-image-1" style={{ backgroundImage: `url(${farmerHeroImage})` }}></div>
+    <div className="slideshow-image slideshow-image-2" style={{ backgroundImage: `url(${distributorImage})` }}></div>
+    <div className="slideshow-image slideshow-image-3" style={{ backgroundImage: `url(${retailerImage})` }}></div>
+    <div className="slideshow-image slideshow-image-4" style={{ backgroundImage: `url(${consumerImage})` }}></div>
+    <div className="slideshow-overlay"></div>
   </div>
   
   <div className="container hero-container">
     <div className="hero-content">
       <div className="hero-badge">
-        <span className="badge-icon">✦</span> Farm-to-Table Traceability
+        <span className="ai-icon">✦</span> AI-Powered Platform
       </div>
       
-      <h1 className="hero-title">
-        Transparent <span className="text-highlight">Food Supply Chain</span> with 
+      <h1 className="hero-title animate-in">
+        Farm to Fork <span className="hero-highlight">Transparency</span> with
         <span className="gradient-text"> SynerHarvest</span>
       </h1>
       
-      <p className="hero-subtitle">
-        Connect farmers, distributors, retailers, and consumers with our 
-        integrated platform for complete supply chain transparency.
+      <p className="hero-subtitle animate-in-delay-1">
+        Our integrated platform combines traceability, IoT monitoring,
+        and AI-driven forecasting to revolutionize food supply chain management.
       </p>
       
-      <div className="hero-stats">
+      <div className="hero-stats animate-in-delay-2">
         <div className="hero-stat">
-          <div className="stat-value">30%</div>
-          <div className="stat-label">Less Food Waste</div>
+          <div className="hero-stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <div className="hero-stat-content">
+            <span className="hero-stat-number">30%</span>
+            <span className="hero-stat-text">Less Food Waste</span>
+          </div>
         </div>
         <div className="hero-stat">
-          <div className="stat-value">45%</div>
-          <div className="stat-label">Increased Efficiency</div>
+          <div className="hero-stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+          <div className="hero-stat-content">
+            <span className="hero-stat-number">45%</span>
+            <span className="hero-stat-text">Increased Efficiency</span>
+          </div>
         </div>
         <div className="hero-stat">
-          <div className="stat-value">95%</div>
-          <div className="stat-label">Traceability</div>
+          <div className="hero-stat-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div className="hero-stat-content">
+            <span className="hero-stat-number">95%</span>
+            <span className="hero-stat-text">Traceability</span>
+          </div>
         </div>
       </div>
       
-      <div className="hero-actions">
-        <Link to="/register" className="btn btn-primary">
-          Get Started Free
+      <div className="hero-actions animate-in-delay-3">
+        <Link to="/register" className="btn btn-primary btn-lg with-icon">
+          <span>Get Started</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
         </Link>
-        <Link to="/tracking" className="btn btn-outlined">
-          Track a Product
+        <Link to="/tracking" className="btn btn-outlined btn-lg with-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Track a Product</span>
         </Link>
       </div>
     </div>
     
-    <div className="hero-image">
-      <img src={farmerHeroImage} alt="SynerHarvest Platform" className="main-hero-image" />
-      <div className="hero-feature-tags">
-        {/* <div className="feature-tag feature-tag-1">QR Traceability</div>
-        <div className="feature-tag feature-tag-2">IoT Monitoring</div>
-        <div className="feature-tag feature-tag-3">AI Analytics</div> */}
+    <div className="hero-image animate-in-right">
+      <div className="hero-feature-card">
+        <h3>Complete Traceability</h3>
+        <p>Track your products from farm to table with real-time data and complete transparency.</p>
+        <div className="hero-feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+          </svg>
+        </div>
       </div>
     </div>
   </div>
   
   <div className="hero-wave">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
-      <path d="M0,50 C250,100 350,0 500,50 C650,100 750,0 900,50 C1050,100 1150,0 1300,50 L1440,50 L1440,120 L0,120 Z" fill="#ffffff"></path>
+      <path d="M0,0 C240,95 480,80 720,40 C960,0 1200,20 1440,60 L1440,100 L0,100 Z" fill="#ffffff"></path>
     </svg>
   </div>
 </section>
