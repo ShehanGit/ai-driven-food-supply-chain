@@ -8,6 +8,13 @@ import distributorImage from '../../assets/images/herosection/home7.jpg';
 import retailerImage from '../../assets/images/herosection/home2.jpg';
 import consumerImage from '../../assets/images/herosection/home5.jpg';
 
+import hero8 from '../../assets/images/herosection/hero8.jpg';
+import hero14 from '../../assets/images/herosection/hero14.jpg';
+import hero10 from '../../assets/images/herosection/hero10.jpg';
+import hero11 from '../../assets/images/herosection/hero11.jpg';
+import hero12 from '../../assets/images/herosection/hero12.jpg';
+import hero13 from '../../assets/images/herosection/hero13.jpg';
+
 const HomePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('farmer');
   const [isVisible, setIsVisible] = useState({
@@ -141,10 +148,12 @@ const HomePage: React.FC = () => {
 <section className="hero-section">
   {/* Background Slideshow */}
   <div className="hero-slideshow">
-    <div className="slideshow-image slideshow-image-1" style={{ backgroundImage: `url(${farmerHeroImage})` }}></div>
-    <div className="slideshow-image slideshow-image-2" style={{ backgroundImage: `url(${distributorImage})` }}></div>
-    <div className="slideshow-image slideshow-image-3" style={{ backgroundImage: `url(${retailerImage})` }}></div>
-    <div className="slideshow-image slideshow-image-4" style={{ backgroundImage: `url(${consumerImage})` }}></div>
+    <div className="slideshow-image slideshow-image-1" style={{ backgroundImage: `url(${hero13})` }}></div>
+    <div className="slideshow-image slideshow-image-2" style={{ backgroundImage: `url(${hero10})` }}></div>
+    <div className="slideshow-image slideshow-image-3" style={{ backgroundImage: `url(${hero12})` }}></div>
+    <div className="slideshow-image slideshow-image-4" style={{ backgroundImage: `url(${hero14})` }}></div>
+    <div className="slideshow-image slideshow-image-5" style={{ backgroundImage: `url(${hero8})` }}></div>
+    <div className="slideshow-image slideshow-image-6" style={{ backgroundImage: `url(${hero11})` }}></div>
     <div className="slideshow-overlay"></div>
   </div>
   

@@ -1455,8 +1455,8 @@
   background-size: cover;
   background-position: center;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
-  animation-duration: 24s;
+  transition: opacity 0.2s ease-in-out;
+  animation-duration: 36s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
@@ -1479,6 +1479,16 @@
 .slideshow-image-4 {
   animation-name: slideshow;
   animation-delay: 18s;
+}
+
+.slideshow-image-5 {
+  animation-name: slideshow;
+  animation-delay: 24s;
+}
+
+.slideshow-image-6 {
+  animation-name: slideshow;
+  animation-delay: 30s;
 }
 
 /* Slideshow Animation */
