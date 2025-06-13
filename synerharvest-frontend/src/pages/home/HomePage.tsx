@@ -148,11 +148,12 @@ const HomePage: React.FC = () => {
 <section className="hero-section">
   {/* Background Slideshow */}
   <div className="hero-slideshow">
+    <div className="slideshow-image slideshow-image-5" style={{ backgroundImage: `url(${hero8})` }}></div>
     <div className="slideshow-image slideshow-image-1" style={{ backgroundImage: `url(${hero13})` }}></div>
     <div className="slideshow-image slideshow-image-2" style={{ backgroundImage: `url(${hero10})` }}></div>
     <div className="slideshow-image slideshow-image-3" style={{ backgroundImage: `url(${hero12})` }}></div>
     <div className="slideshow-image slideshow-image-4" style={{ backgroundImage: `url(${hero14})` }}></div>
-    <div className="slideshow-image slideshow-image-5" style={{ backgroundImage: `url(${hero8})` }}></div>
+    
     <div className="slideshow-image slideshow-image-6" style={{ backgroundImage: `url(${hero9})` }}></div>
     <div className="slideshow-overlay"></div>
   </div>
